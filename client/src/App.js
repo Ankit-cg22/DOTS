@@ -1,53 +1,25 @@
-  
-import React, { useState, useEffect } from 'react';
-import { Container,  Grow, Grid } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
-
-import Posts from './Components/Posts/Posts';
-import Form from './Components/Form/Form';
-import { getPosts } from './actions/posts';
-import useStyles from './styles';
+import React from 'react';
+import { Container } from '@material-ui/core';
 import Navbar from './Components/Navbar/Navbar';
+import Home from './Components/Home/Home';
+
+import { BrowserRouter , Switch , Route } from 'react-router-dom';
+import Auth from './Components/Auth/Auth';
 
 const App= () => {
 
-    const [currentId , setCurrentId] = useState(0);
-
-    const dispatch = useDispatch();
-    const classes = useStyles();
-
-    useEffect(() => {
-        dispatch(getPosts());
-      }, [currentId, dispatch]);
-    // here we dispatch the action , 
-    // we handle this dispatch in the reducer funtion for corresponding stuff
-
-  
-
     return (
-        <Container maxWidth='lg'>
-            <Navbar/>
-            <Grow in>
-                <Container >
-                    <Grid container alignItems="stretch" justifyContent="space-between"  spacing={3}  >
-                        <Grid item xs={12} sm={7}>
-                            {/* xs : xtra small , take whole space in xs devices */}
-                            {/* sm : on small devices , take 7 out of 12 spaces */}
+        <BrowserRouter>
+            <Container maxWidth='lg'>
+                <Navbar/>
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path = "/auth" component={Auth} />
+                    {/* <Route exact path="/edit" render ={(currentId , setCurrentId) => <EditForm {... currentId , setCurrentId}/>}/> */}
 
-                            <Posts  setCurrentId = {setCurrentId}  />    
-
-                        </Grid>
-
-                        <Grid item xs={12} sm={4}>
-
-                             <Form currentId={currentId}  setCurrentId={setCurrentId} />
-
-                        </Grid>
-
-                    </Grid>
-                </Container>
-            </Grow>
-        </Container>
+                </Switch>
+            </Container>
+        </BrowserRouter>
     )
 }
 
