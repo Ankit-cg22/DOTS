@@ -8,7 +8,7 @@ export default function EditForm({currentId , setCurrentId}) {
         
         <Grid item xs={12} sm={4}>
 
-        <Form currentId={currentId}  setCurrentId={setCurrentId} />
+            <Form currentId={currentId}  setCurrentId={setCurrentId} />
 
         </Grid>
     )

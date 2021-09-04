@@ -6,7 +6,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import Input from './Input';
 
-export default function Auth() {
+export default function Auth( {currentId , setCurrentId}) {
+    
     const state = 0;
     const classes = useStyles();
     const [showPassword , setShowPassword] = useState(0)
@@ -24,6 +25,8 @@ export default function Auth() {
     const handleShowPassword=()=>{
         setShowPassword(!showPassword)
     }
+
+    
 
     return (
         <div>

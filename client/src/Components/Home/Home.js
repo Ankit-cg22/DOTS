@@ -1,33 +1,12 @@
 import React from 'react';
-import { Container,  Grow, Grid } from '@material-ui/core';
+import { Button ,Container,  Grow, Grid } from '@material-ui/core';
 import Posts from '../Posts/Posts'
-
-import Form from '../Form/Form';
-
-
-
-import  { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { getPosts } from '../../actions/posts';
+import { Link } from 'react-router-dom';
 
 
 
-export default function Home() {
-    
-    const [currentId , setCurrentId] = useState(0);
-
-    const dispatch = useDispatch();
-    // const classes = useStyles();
-
-    useEffect(() => {
-        dispatch(getPosts());
-      }, [currentId, dispatch]);
-    // here we dispatch the action , 
-    // we handle this dispatch in the reducer funtion for corresponding stuff
-
-
-
+export default function Home( {  currentId , setCurrentId }) {
+   
     return (
         <Grow in>
             <Container >
@@ -42,11 +21,13 @@ export default function Home() {
                     
                     <Grid item xs={12} sm={4}>
 
-                        <Form currentId={currentId}  setCurrentId={setCurrentId} />
+                        <Button component={Link} to="/create"  color ="secondary" variant="contained">
+                            Place a Dot   
+                        </Button>
 
                     </Grid>
                         
-                    </Grid>
+                </Grid>
             </Container>
         </Grow>
     )

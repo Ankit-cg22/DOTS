@@ -8,10 +8,12 @@ import { createPost , updatePost } from '../../actions/posts';
 
 import { useSelector } from 'react-redux'; // to select particular items from the reduc store
 
+import  { Redirect , useHistory } from 'react-router-dom'
+
 export default function Form( { currentId , setCurrentId }) {
     const classes = useStyles();
     const dispatch = useDispatch();
-
+    const history = useHistory()
     const [postData , setPostData] = useState({
          title:'', message :'' ,author :'' , tags:'',selectedFile:''
     });
@@ -36,6 +38,8 @@ export default function Form( { currentId , setCurrentId }) {
             dispatch( createPost(postData))
         }
         clear()
+        history.push("/") // to redirect to home 
+        
     }
 
     const clear = () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import {  AppBar, Avatar, Toolbar, Typography , Button} from '@material-ui/core';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useStyles from './style'
 import dots from '../../images/dots.png'
 export default function Navbar() {
