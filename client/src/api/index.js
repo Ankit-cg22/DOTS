@@ -8,7 +8,7 @@ export const updatePost = ( id , updatedPost) => axios.patch(`${url}/${id}`, upd
 export const deletePost = (id) => axios.delete(`${url}/${id}`)
 export const updateLikes = (id) => axios.patch(`${url}/${id}/likePost`)
 
-//auth
+//auth( will move to other folder )
 
 export const signUp =  () => console.log("signup tried")
 export const signIn =  () => console.log("signIn tried")

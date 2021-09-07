@@ -4,4 +4,3 @@
 /* also while liking we check if this person has already liked a post , cause we allow liking only once */
 
 // All of this is handled by MIDDLEWARE 
-// we define the middleware here
