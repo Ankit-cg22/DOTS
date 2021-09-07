@@ -1,9 +1,10 @@
 import React from 'react'
 import useStyles from './styles'
-import {Card , CardActions , CardContent, CardMedia ,Button , Typography} from '@material-ui/core'
+import {Grid ,Card , CardActions , CardContent, CardMedia ,Button , Typography  } from '@material-ui/core'
+
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import EditIcon from '@material-ui/icons/Edit';
 import moment from 'moment'
 import { useDispatch } from 'react-redux';
 import { deletePost , updateLikes } from '../../../actions/posts';
@@ -23,9 +24,7 @@ export default function Post( {post , setCurrentId}) {
             </div>
 
             <div className={classes.overlay2}>
-                <Button component={Link} to="/create" style={{ color: 'white' }} size="small" onClick={() => setCurrentId(post._id)}>
-                    <MoreHorizIcon fontSize="default" />
-                </Button>
+                
             </div>
 
             
@@ -43,11 +42,19 @@ export default function Post( {post , setCurrentId}) {
 
         <CardActions className={classes.cardActions}>
             <Button size="small" color="primary" onClick={() => dispatch(updateLikes(post._id))}>
-                <ThumbUpAltIcon fontSize="small" /> Like : {post.likeCount} 
+                <ThumbUpAltIcon fontSize="small" /> : {post.likeCount} 
             </Button>
-            <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
-                <DeleteIcon fontSize="small" /> Delete
-            </Button>
+            <Grid>
+    
+                <Button component={Link} to="/create" size="small" color="primary" onClick={() => setCurrentId(post._id)}>
+                        <EditIcon fontSize="default" />
+                </Button>
+    
+                <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
+                    <DeleteIcon fontSize="small" /> 
+                </Button>
+            </Grid>
+
         </CardActions>
 
       

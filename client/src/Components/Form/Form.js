@@ -8,7 +8,7 @@ import { createPost , updatePost } from '../../actions/posts';
 
 import { useSelector } from 'react-redux'; // to select particular items from the reduc store
 
-import  { Redirect , useHistory } from 'react-router-dom'
+import  {  useHistory } from 'react-router-dom'
 
 export default function Form( { currentId , setCurrentId }) {
     const classes = useStyles();

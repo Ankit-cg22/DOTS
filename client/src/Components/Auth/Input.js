@@ -14,7 +14,7 @@ export default function Input( {handleChange ,label, name , half , autoFocus , t
             <TextField
                 name={name}
                 label={label}
-                handleChange={handleChange}
+                onChange={handleChange}
                 required
                 fullWidth
                 autoFocus = {autoFocus}

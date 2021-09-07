@@ -1,4 +1,4 @@
-// here we define the model for our database
+// here we define the model for the collection to store posts
 
 import mongoose from 'mongoose';
 
