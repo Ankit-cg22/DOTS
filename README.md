@@ -1,5 +1,5 @@
 <h1>DOTS</h1>
-A blog app made using MERN tach stack.
+A blog app made using MERN tech stack.
 
 <h2> Features </h2>
 
@@ -24,7 +24,7 @@ A blog app made using MERN tach stack.
 <h3>Backend</h3>
 
 - ExpressJS : NodeJS framework for handling backend requests .
-- Mongoose : For designing models and schemas for the database.
+- Mongoose : For designing schemas and models for the database.
 - MongoDB : Used as database.
 
 <h2> Work flow of operations </h2>
