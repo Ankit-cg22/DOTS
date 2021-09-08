@@ -7,6 +7,7 @@ A blog app made using MERN tech stack.
 - Edit a post
 - Like a post
 - Delete a post
+- Sign in , sign up funtionality using JWT authentication
 
 <h2>Tech/Frameworks/Packages used </h2>
 
@@ -26,12 +27,12 @@ A blog app made using MERN tech stack.
 - ExpressJS : NodeJS framework for handling backend requests .
 - Mongoose : For designing schemas and models for the database.
 - MongoDB : Used as database.
+- jsonwebtoken : For JWT authentication
 
 <h2> Work flow of operations </h2>
 
 ![Work Flow](https://user-images.githubusercontent.com/77494560/132367450-86cd5772-dca4-4ec5-b142-fba4c2b10a56.png)
 
 <h2>Currently working on</h2>
-Adding user account funtionalities using JWT authentication.
-
+Polishing the frontend.
 
