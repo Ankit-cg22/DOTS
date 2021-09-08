@@ -66,12 +66,35 @@ export const updatePost = async( req ,res) => {
 export const updateLikes = async(req  , res) => {
     const { id } = req.params;
 
+    // check if user is authenticated
+    if( !req.userId)return rese.json({message : "User is not authenticated!!"});
+
     // check with mongoose if any post with that id exists or not
     if( !(mongoose.Types.ObjectId.isValid(id)) ) return res.status(404).send(`No post with id : ${id}`);
 
     const post = await PostMessage.findById(id);
 
-    const updatedPost = await PostMessage.findByIdAndUpdate( id , { likeCount : post.likeCount + 1 } , {new : true})
+
+    // TO CHECK IF HE HAS ALREADY LIKED 
+
+    // we maintain a list of all ids that have liked a post
+
+    // check for the id in the 'haveLiked' list
+    const index = post.likes.findIndex((id) => id === String(req.userId)); 
+
+    if( index == -1 )
+    {
+        // not found in the list , not liked before , like it , push into list
+        post.likes.push(req.userId)
+
+    }else{
+        //id found , have liked before , now unlike , delete from list
+        post.likes.filter( (id) => id !== req.userId)
+    }
+
+
+    const updatedPost = await PostMessage.findByIdAndUpdate( id , post , {new : true})
+    // simply pass the updated post in update request to the db
 
     res.json(updatedPost);
 }

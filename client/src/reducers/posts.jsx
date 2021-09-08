@@ -21,6 +21,7 @@ export default (posts=[] , action) => {
         
         case DELETE:
             return posts.filter((post) => post._id !== action.payload);
+            // those posts that satisfy the condition stay , others are deleted
 
         default :
             return posts;

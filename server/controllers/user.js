@@ -88,5 +88,5 @@ export  const signUp = async (req, res) => {
     }
 } 
 
-
+// test_secret_string is for jwt auth , not for password
 

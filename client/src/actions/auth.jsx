@@ -5,10 +5,12 @@ export const signUp = ( authFormData , history ) => async(dispatch) => {
     try {
         
         // api call for backend
-        api.signUp();
+        const { data } = await api.signUp(authFormData);
+        // { } this is called destructuring the data
+        // it unpacks properties from objects, into distinct variables
 
         // dispatch for the store
-        
+        dispatch({type : AUTH ,  data })        
 
         // redirect to the homepage
         history.push('/')
@@ -22,9 +24,11 @@ export const signIn = ( authFormData , history ) =>async(dispatch) =>  {
     try {
         
         // api call for backend
-        api.signIn();
-        // dispatch for the store
+        const { data } = await api.signIn(authFormData);
 
+        // dispatch for the store
+        dispatch({type : AUTH ,  data })   
+        
         // redirect to the homepage
         history.push('/')
 

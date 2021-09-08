@@ -1,13 +1,33 @@
-import React from 'react'
-import {  AppBar, Avatar, Toolbar, Typography , Button} from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import React , {useState ,useEffect } from 'react'
+import {  Grid , AppBar, Avatar, Toolbar, Typography , Button} from '@material-ui/core';
+import { Link  , useHistory , useLocation} from 'react-router-dom';
+import {  useDispatch } from 'react-redux';
+
 import useStyles from './style'
 import dots from '../../images/dots.png'
 export default function Navbar() {
 
     const classes = useStyles();
 
-    const user = 0;
+    const [user,setUser] = useState( JSON.parse(localStorage.getItem('profile')))
+
+    const dispatch = useDispatch();
+    const history= useHistory()
+    const location= useLocation()
+
+
+    const logout = () => {
+        dispatch({ type : 'LOGOUT' })
+        history.push('/')
+
+        setUser(null)
+    }
+
+    useEffect(() => {
+       const token = user?.token;
+       setUser(JSON.parse(localStorage.getItem('profile')))
+    }, [location])
+    // we call it when url location changes
 
     return (
         <AppBar className={classes.appBar} position='static' color='inherit'>
@@ -28,7 +48,7 @@ export default function Navbar() {
                         <Typography className={classes.userName} variant="h6">
                             {user.result.name}
                         </Typography>
-                        <Button className ={classes.logout} color ="secondary">
+                        <Button className ={classes.logout} color ="secondary" variant="contained" onClick ={logout}>
                             Log Out
                         </Button>
                        
@@ -37,7 +57,7 @@ export default function Navbar() {
                     :
                     <div className="classes.profile">
                       
-                            <Button component={Link} to="/auth"  color ="secondary" variant="contained">
+                            <Button component={Link} to="/auth"  color ="primary" variant="contained">
                                 Log In
                             </Button>
                        
