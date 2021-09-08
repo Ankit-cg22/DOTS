@@ -7,7 +7,8 @@ A blog app made using MERN tech stack.
 - Edit a post
 - Like a post
 - Delete a post
-- Sign in , sign up funtionality using JWT authentication
+- User account functionality  
+- JWT authentication
 
 <h2>Tech/Frameworks/Packages used </h2>
 
@@ -34,5 +35,5 @@ A blog app made using MERN tech stack.
 ![Work Flow](https://user-images.githubusercontent.com/77494560/132367450-86cd5772-dca4-4ec5-b142-fba4c2b10a56.png)
 
 <h2>Currently working on</h2>
-Polishing the frontend.
+Enhancing the frontend.
 
