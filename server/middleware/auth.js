@@ -20,7 +20,7 @@ import jwt from 'jsonwebtoken'
 const auth = async (req ,res , next)  => {
     try {
         // =-=-=-=-=-= Checking if the user is allowed to do the actions(delete , edit) =-=-=-=-=-=-=-=-=
-
+      
         // receive the token from frontend
         const token = req.headers.authorization.split(" ")[1]; 
 

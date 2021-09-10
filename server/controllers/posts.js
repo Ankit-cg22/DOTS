@@ -33,7 +33,7 @@ export const createPost = async(req , res)=> {
 
     // create new post in the db using this postBody
 
-    const newPost = new PostMessage(post); // we save it to the db using the model
+    const newPost = new PostMessage({ ...post , author : req.userId , createdAt: new Date().toISOString() }); // we save it to the db using the model
 
     try {
         await newPost.save();
@@ -41,6 +41,7 @@ export const createPost = async(req , res)=> {
 
         res.status(201).json(newPost);
     } catch (error) {
+        console.log(error)
         res.status(409).json({message : error.message});
     }
 }
@@ -82,14 +83,14 @@ export const updateLikes = async(req  , res) => {
     // check for the id in the 'haveLiked' list
     const index = post.likes.findIndex((id) => id === String(req.userId)); 
 
-    if( index == -1 )
+    if( index === -1 )
     {
         // not found in the list , not liked before , like it , push into list
         post.likes.push(req.userId)
 
     }else{
         //id found , have liked before , now unlike , delete from list
-        post.likes.filter( (id) => id !== req.userId)
+        post.likes = post.likes.filter( (id) => id !== String(req.userId))
     }
 
 

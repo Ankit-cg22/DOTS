@@ -15,8 +15,10 @@ export default function Form( { currentId , setCurrentId }) {
     const dispatch = useDispatch();
     const history = useHistory()
     const [postData , setPostData] = useState({
-         title:'', message :'' ,author :'' , tags:'',selectedFile:''
+         title:'', message :''  , tags:'',selectedFile:''
     });
+
+    const currentUser = JSON.parse(localStorage.getItem('profile'))
 
     
     const postUpdate = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
@@ -35,7 +37,7 @@ export default function Form( { currentId , setCurrentId }) {
             dispatch( updatePost(currentId , postData))
         }
         else{
-            dispatch( createPost(postData))
+            dispatch( createPost({ ...postData , name : currentUser?.result?.name }))
         }
         clear()
         history.push("/") // to redirect to home 
@@ -44,7 +46,7 @@ export default function Form( { currentId , setCurrentId }) {
 
     const clear = () => {
         setCurrentId(null)
-        setPostData({title:'', message :'' ,author :'' , tags:'',selectedFile:''})
+        setPostData({title:'', message :''  , tags:'',selectedFile:''})
     }
 
     return (
@@ -53,14 +55,6 @@ export default function Form( { currentId , setCurrentId }) {
             <Paper className={classes.paper}>
                 <form autoComplete='off' noValidate className={`${classes.root} ${classes.form} `} onSubmit={handleSubmit}>
                     <Typography variant = "h6"> {currentId ? "Edit the " : "Place a" } DOT</Typography>   
-                    <TextField 
-                        name = 'author'
-                        variant="outlined" 
-                        label ="Author" 
-                        fullWidth
-                        value={postData.author}
-                        onChange={(e) => setPostData({...postData, author : e.target.value})}
-                    />
                     <TextField 
                         name = 'title'
                         variant="outlined" 

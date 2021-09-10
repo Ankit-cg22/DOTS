@@ -25,6 +25,7 @@ export default makeStyles((theme) => ({
   },
   profile: {
     display: 'flex',
+    flexDirection : 'row',
     justifyContent: 'space-between',
     width: '400px',
   },
