@@ -15,12 +15,11 @@ export default function Form( { currentId , setCurrentId }) {
     const dispatch = useDispatch();
     const history = useHistory()
     const [postData , setPostData] = useState({
-         title:'', message :''  , tags:'',selectedFile:''
+        title:'', message :''  , tags:'',selectedFile:''
     });
 
     const currentUser = JSON.parse(localStorage.getItem('profile'))
 
-    
     const postUpdate = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
 
     useEffect(()=> {

@@ -20,6 +20,8 @@ export const getPosts = () => async (dispatch) => {
     try {
         const { data } = await api.fetchPosts();
         // we are targeting the data object of the response we will get back
+
+
         dispatch( { type : FETCH_ALL , payload : data});
     } catch (error) {
         console.log(error.message);

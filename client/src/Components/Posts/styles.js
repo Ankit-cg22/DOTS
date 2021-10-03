@@ -4,6 +4,8 @@ export default makeStyles((theme) => ({
   mainContainer: {
     display: 'flex',
     alignItems: 'center',
+    flexWrap :"wrap",
+
   },
   smMargin: {
     margin: theme.spacing(1),
@@ -11,4 +13,4 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: 'center',
   },
-}));
+}));  

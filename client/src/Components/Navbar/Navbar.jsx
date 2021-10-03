@@ -6,6 +6,7 @@ import decode from 'jwt-decode';
 
 import useStyles from './style'
 import dots from '../../images/dots.png'
+
 export default function Navbar() {
 
     const classes = useStyles();
@@ -37,25 +38,27 @@ export default function Navbar() {
     }, [location])
     // we call it when url location changes
 
+   
+
     return (
         <AppBar className={classes.appBar} position='static' color='inherit'>
             <div className="brandContainer">
                 <img className={classes.image} src={dots} alt="dots-logo" height='50'/>    
                 
-                    <Typography  component={Link} to="/"  className={classes.heading} variant='h2' align='center'>DOTS</Typography>                    
-               
+                <Typography  component={Link} to="/"  className={classes.heading} variant='h2' align='center'>DOTS</Typography>                    
 
             </div>
 
             <Toolbar>
                 {user ?
-                    <div className="classes.profile">
-                        <Avatar className ={classes.purple} alt = {user.result.name} src={user.result.imageUrl}>
-                            {user.result.name.charAt(0)}
+                    <div className={classes.profile}>
+
+                        <Avatar alt = {user.result.name} >
+                            {user.result.name.charAt(1)}
                         </Avatar>
-                        <Typography className={classes.userName} variant="h6">
+                        {/* <Typography className={classes.userName} variant="h6">
                             {user.result.name}
-                        </Typography>
+                        </Typography> */}
                         <Button className ={classes.logout} color ="secondary" variant="contained" onClick ={logout}>
                             Log Out
                         </Button>
@@ -63,7 +66,7 @@ export default function Navbar() {
                         {/* when we creat user it will have a imageUrl property */}
                     </div>
                     :
-                    <div className="classes.profile">
+                    <div className={classes.profile}>
                       
                             <Button component={Link} to="/auth"  color ="primary" variant="contained">
                                 Log In

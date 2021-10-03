@@ -17,9 +17,12 @@ export default makeStyles({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    borderRadius: '15px',
-    height: '100%',
+    borderRadius: '1rem',
+    // height: '50vh',
+    width:'80%',
     position: 'relative',
+    margin:'1rem',
+    
   },
   overlay: {
     position: 'absolute',

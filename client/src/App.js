@@ -32,7 +32,7 @@ const App= () => {
 
     return (
         <BrowserRouter>
-            <Container maxWidth='lg'>
+           
                 <Navbar/>
                 <Switch>
                     <Route exact path="/" > 
@@ -49,7 +49,7 @@ const App= () => {
                     {/* <Route exact path="/edit" render ={(currentId , setCurrentId) => <EditForm {... currentId , setCurrentId}/>}/> */}
 
                 </Switch>
-            </Container>
+            
         </BrowserRouter>
     )
 }
