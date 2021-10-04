@@ -1,15 +1,24 @@
 import React from 'react';
-import { Button ,Container,  Grow, Grid } from '@material-ui/core';
+import { Button ,Container,  Grow, Grid ,Paper} from '@material-ui/core';
 import Posts from '../Posts/Posts'
 import { Link } from 'react-router-dom';
 import AddBoxIcon from '@material-ui/icons/AddBox';
-// import AddIcon from '@material-ui/icons/Add';
+import Paginate from '../Pagination/Pagination';
+import { useLocation } from 'react-router-dom';
 
 import useStyles from './styles'
+
+function useQuery(){
+    return new URLSearchParams(useLocation().search)
+}
 
 export default function Home( {  currentId , setCurrentId }) {
    const classes = useStyles();
    const user = JSON.parse(localStorage.getItem('profile'));
+
+   const query = useQuery()
+   const page = query.get('page') || 1; // if 'page' not present , set it to 1(first page)
+
     return (
 
         <Grid container >
@@ -17,6 +26,10 @@ export default function Home( {  currentId , setCurrentId }) {
                 {/* xs : xtra small , take whole space in xs devices */}
                 {/* sm : on small devices , take 7 out of 12 spaces */}
                 <Posts  setCurrentId = {setCurrentId}  />
+
+                <Paper>
+                    <Paginate page={page}/>
+                </Paper>
                 
             </Grid>
             
@@ -32,10 +45,8 @@ export default function Home( {  currentId , setCurrentId }) {
                         </Button> 
              
                     }   
-                
 
-                        
-                
+
             </Grid>
         </Grid>
     

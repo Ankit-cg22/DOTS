@@ -14,11 +14,11 @@ export default function Posts( {setCurrentId }) {
     const classes = useStyles();
 
     // useSelector : pulling data from global store
-    const posts = useSelector( (state) => state.posts )
-    console.log(posts)
+    const { posts } = useSelector( (state) => state.posts )
+    // console.log(posts)
 
     return (
-        !posts.length ? <CircularProgress/>: (
+        !posts?.length ? <CircularProgress/>: (
             <Grid className ={classes.mainContainer} containter alignItems="stretch" spacing={1}>
 
                 {posts.map( (post) => (

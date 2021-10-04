@@ -7,8 +7,9 @@ A blog app made using MERN tech stack.
 - Edit a post
 - Like a post
 - Delete a post
-- User account functionality  
+- User account functionality
 - JWT authentication
+- Pagination
 
 <h2>Tech/Frameworks/Packages used </h2>
 
@@ -17,7 +18,7 @@ A blog app made using MERN tech stack.
 - React : JS framework.
 - React router : To route to different pages.
 - Redux : State management tool.
-- Redux-thunk : Redux middleware to handle asynchronous actions. 
+- Redux-thunk : Redux middleware to handle asynchronous actions.
 - Axios : To make api requests .
 - Material-ui : To render various components.
 - Moment : To work with date and time.
@@ -29,6 +30,7 @@ A blog app made using MERN tech stack.
 - Mongoose : For designing schemas and models for the database.
 - MongoDB : Used as database.
 - jsonwebtoken : For JWT authentication
+- cors : cross origin resource sharing
 
 <h2> Work flow of operations </h2>
 
@@ -36,4 +38,3 @@ A blog app made using MERN tech stack.
 
 <h2>Currently working on</h2>
 Enhancing the frontend.
-
