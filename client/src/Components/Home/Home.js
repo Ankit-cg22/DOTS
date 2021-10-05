@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import Paginate from '../Pagination/Pagination';
 import { useLocation, useHistory } from 'react-router-dom';
-
+import { getPostsByTag } from '../../actions/posts';
 import useStyles from './styles'
+import { useDispatch } from 'react-redux';
 
 function useQuery(){
     return new URLSearchParams(useLocation().search)
@@ -20,13 +21,32 @@ export default function Home( {  currentId , setCurrentId }) {
    const page = query.get('page') || 1; // searches for 'page' parameter in the url
    // if 'page' not present , set it to 1(first page)
 
+   const searchQuery = query.get('searchQuery')
+
    const [tagSearch , setTagSearch] = useState('');
+   const [search , setSearch] = useState('');
+
+   const dispatch = useDispatch()
+
    const handleTagInput=(e)=>{
     setTagSearch(e.target.value)
    }
+
    const handleTagSearch=()=>{
-    alert(tagSearch)
+    if(tagSearch)
+    {
+        dispatch(getPostsByTag({search , tag : tagSearch}))
+        // history.push(`/posts/search?searchQuery=${search || 'none'}&tag=${tagSearch}`)
+        
+    }else{
+        history.push('/')
+    }
    }
+
+
+//    const handleKeyPress = (e)=>{
+//        if(e.keyCode === 13) handleTagSearch()
+//    }
 
     return (
 
@@ -56,7 +76,7 @@ export default function Home( {  currentId , setCurrentId }) {
                     }   
 
                     <Paper className={classes.searchBox}>
-                        <TextField label="Search tags" variant="outlined" onChange={(e)=>handleTagInput(e)}/>
+                        <TextField label="Search tags" variant="outlined" onChange={(e)=>handleTagInput(e)} />
                         <Button variant ="contained" color="primary" onClick={() => handleTagSearch()}> Search </Button>
                     </Paper>
 

@@ -1,6 +1,6 @@
 // reducers : 
 
-import { CREATE , UPDATE , DELETE , FETCH_ALL  } from '../constants/actionTypes';
+import { CREATE , UPDATE , DELETE , FETCH_ALL ,FETCH_BY_TAG  } from '../constants/actionTypes';
 
 export default (state=[] , action) => {
     switch(action.type)
@@ -12,6 +12,11 @@ export default (state=[] , action) => {
                 currentPage :action.payload.currentPageNumber,
                 totalNumberOfPages : action.payload.totalNumberOfPages
             }
+
+        case FETCH_BY_TAG:
+
+            return  { ...state, posts : action.payload.data };
+        
         case CREATE:
             return [...state, action.payload]
             // spread all existing posts and add a new one

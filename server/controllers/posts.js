@@ -33,6 +33,26 @@ export const getPosts = async(req , res)=> {
     }
 }
 
+// query : /posts?page=2 ::-> page = 2
+// params : /posts/:id
+        //  /posts/123  ::-> id = 123
+
+export const getPostsByTag = async(req,res) => {
+
+    const {tag} = req.query
+
+    try {
+
+        const posts = await PostMessage.find( { tags : tag })
+        res.json({ data : posts })
+    } catch (error) {
+        res.status(404).json({ message : error })
+    }
+}
+
+
+
+
 export const createPost = async(req , res)=> {
 
     const post = req.body;
