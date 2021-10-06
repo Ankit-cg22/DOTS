@@ -1,6 +1,6 @@
 // reducers : 
 
-import { CREATE , UPDATE , DELETE , FETCH_ALL ,FETCH_BY_TAG  } from '../constants/actionTypes';
+import { CREATE , UPDATE , DELETE , FETCH_ALL ,FETCH_BY_TAG , FETCH_POST_BY_ID } from '../constants/actionTypes';
 
 export default (state=[] , action) => {
     switch(action.type)
@@ -14,8 +14,10 @@ export default (state=[] , action) => {
             }
 
         case FETCH_BY_TAG:
-
             return  { ...state, posts : action.payload.data };
+
+        case FETCH_POST_BY_ID:
+            return { ...state  , post: action.payload}            
         
         case CREATE:
             return [...state, action.payload]

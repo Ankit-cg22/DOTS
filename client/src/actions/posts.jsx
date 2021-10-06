@@ -12,7 +12,7 @@ import * as api from '../api';
 //  we can follow this above syntax but we need asynchronity
 // so we follow this below method( it uses redux thunk )
 
-import { CREATE , UPDATE , DELETE , FETCH_ALL , FETCH_BY_TAG} from '../constants/actionTypes';
+import { CREATE , UPDATE , DELETE , FETCH_ALL , FETCH_BY_TAG , FETCH_POST_BY_ID } from '../constants/actionTypes';
 
 
 export const getPosts = (page) => async (dispatch) => {
@@ -38,6 +38,20 @@ export const getPostsByTag = (searchQuery) => async (dispatch) => {
         // we are targeting the data object of the response we will get back
         console.log(data)
         dispatch( { type : FETCH_BY_TAG , payload : {data : data} });
+    } catch (error) {
+        console.log(error.message);
+    }
+
+}
+
+
+export const getPost = (id) => async(dispatch) => {
+        
+    try {
+        const { data } = await api.fetchPostById(id);
+        // we are targeting the data object of the response we will get back
+    
+        dispatch( { type : FETCH_POST_BY_ID , payload : data});
     } catch (error) {
         console.log(error.message);
     }

@@ -3,7 +3,7 @@ import { Container } from '@material-ui/core';
 import Navbar from './Components/Navbar/Navbar';
 import Home from './Components/Home/Home';
 import EditForm from './Components/EditForm/EditForm';
-
+import PostDetails from './Components/Posts/PostDetails/PostDetails';
 import { BrowserRouter , Switch , Route ,Redirect} from 'react-router-dom';
 import Auth from './Components/Auth/Auth';
 
@@ -55,6 +55,11 @@ const App= () => {
                         {/* if there is a logged in user and he is trying to access '/auth' we redirect him to the posts page */}
                         
                     </Route> 
+                        
+                    <Route exact path='/posts/:id'>
+                        <PostDetails/>
+                    </Route>
+                    
                    
                 </Switch>
             

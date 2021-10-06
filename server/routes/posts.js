@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getPosts,getPostsByTag, createPost, updatePost, deletePost, updateLikes  } from '../controllers/posts.js'
+import { getPosts,getPostsByTag, createPost, updatePost, deletePost, updateLikes ,fetchPostById } from '../controllers/posts.js'
 import auth from '../middleware/auth.js'
 
 const router = express.Router();
@@ -10,6 +10,9 @@ router.get('/', getPosts);
 
 // search by tag
 router.get('/search' , getPostsByTag)
+
+// get post by id
+router.get('/:id' , fetchPostById)
 
 // create a post
 router.post('/', auth, createPost);

@@ -1,6 +1,6 @@
 import React, {useEffect , useState} from 'react'
 import useStyles from './styles'
-import {Grid ,Card , CardActions , CardContent, CardMedia ,Button , Typography  } from '@material-ui/core'
+import {Grid ,Card , CardActions , CardContent, CardMedia ,Button , Typography,ButtonBase   } from '@material-ui/core'
 
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -9,32 +9,36 @@ import moment from 'moment'
 import { useDispatch } from 'react-redux';
 import { deletePost , updateLikes } from '../../../actions/posts';
 import { Link } from 'react-router-dom';
-
+import { useHistory } from 'react-router';
 export default function Post( {post , setCurrentId}) {
     const classes = useStyles();
     const dispatch = useDispatch();
-
+    const history = useHistory();
     const currentUser = JSON.parse(localStorage.getItem('profile'));
+
+    const openPost=()=>{
+        history.push(`/posts/${post._id}`)
+    }
 
     return (
         <Card className={classes.card}>
+        <ButtonBase className={classes.cardAction} onClick={openPost}>
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
-
-            <div className={classes.overlay}>
-                <Typography variant="h6">{post.name}</Typography>
-                <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
+                <div className={classes.overlay}>
+                    <Typography variant="h6">{post.name}</Typography>
+                    <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
+                </div>
+            <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
+            
+            <CardContent>
+                <Typography variant="body2" color="textSecondary" component="p">{post.message}</Typography>
+            </CardContent>
+            <div className={classes.details}>
+                <Typography variant="body2" color="textSecondary" component="h2">
+                    {post.tags.map((tag) => `#${tag} `)}
+                </Typography>
             </div>
-
-        <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
-        
-        <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">{post.message}</Typography>
-        </CardContent>
-        <div className={classes.details}>
-            <Typography variant="body2" color="textSecondary" component="h2">
-                {post.tags.map((tag) => `#${tag} `)}
-            </Typography>
-        </div>
+        </ButtonBase>
 
         <CardActions className={classes.cardActions}>
             <Button disabled = { !currentUser?.result } size="small" color="primary" onClick={() => dispatch(updateLikes(post._id))}>
