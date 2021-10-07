@@ -56,6 +56,10 @@ const App= () => {
                         
                     </Route> 
                         
+                    <Route path="/posts/search" exact >
+                        <Home/> 
+                    </Route>
+
                     <Route exact path='/posts/:id'>
                         <PostDetails/>
                     </Route>

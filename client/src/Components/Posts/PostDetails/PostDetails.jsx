@@ -4,13 +4,14 @@ import { useDispatch , useSelector } from 'react-redux'
 import moment from 'moment'
 import {useParams , useHistory} from 'react-router-dom'
 import { getPost } from '../../../actions/posts'
+import LoadScreen from '../../LoadScreen/LoadScreen'
 
 import useStyles from './styles'
 
 export default function PostDetails() {
 
     const classes = useStyles()
-    const {post , posts }  = useSelector((state) => state.posts)
+    const {post , posts , isLoading }  = useSelector((state) => state.posts)
     const dispatch = useDispatch()
     const history = useHistory()
     const { id } = useParams()
@@ -20,6 +21,13 @@ export default function PostDetails() {
     }, [id] )
 
     if(!post)return null;
+
+    if(isLoading)
+    {
+       return(
+        <LoadScreen/>
+       ) 
+    }
 
     return (
         <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>

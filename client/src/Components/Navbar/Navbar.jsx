@@ -3,6 +3,7 @@ import {  Grid , AppBar, Avatar, Toolbar, Typography , Button} from '@material-u
 import { Link  , useHistory , useLocation} from 'react-router-dom';
 import {  useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
+import { LOGOUT } from '../../constants/actionTypes';
 
 import useStyles from './style'
 import dots from '../../images/dots.png'
@@ -19,7 +20,7 @@ export default function Navbar() {
 
 
     const logout = () => {
-        dispatch({ type : 'LOGOUT' })
+        dispatch({ type : LOGOUT })
         history.push('/')
         setUser(null)
     }

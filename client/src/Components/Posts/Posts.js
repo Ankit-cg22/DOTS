@@ -1,7 +1,7 @@
 import React from 'react'
 import {Grid , CircularProgress} from '@material-ui/core'
 import Post from './Post/Post'
-
+import LoadScreen from '../LoadScreen/LoadScreen';
 // here we need the data about the posts 
 // we pull it from the store
 // for that we make use of useSelector
@@ -14,8 +14,15 @@ export default function Posts( {setCurrentId }) {
     const classes = useStyles();
 
     // useSelector : pulling data from global store
-    const { posts } = useSelector( (state) => state.posts )
+    const { posts , isLoading} = useSelector( (state) => state.posts )
     console.log(posts)
+
+    if(isLoading)
+    {
+        return(
+            <LoadScreen/>
+        )
+    }
 
     return (
         !posts?.length ? <CircularProgress/>: (

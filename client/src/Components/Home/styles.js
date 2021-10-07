@@ -8,7 +8,8 @@ export default makeStyles({
         
     },
     signMsg:{
-        pointerEvents:"none"
+        pointerEvents:"none",
+        
         
     },
     searchBox:{
@@ -19,6 +20,7 @@ export default makeStyles({
         alignItems:"center",
         justifyContent:"space-around",
         padding:"0.5rem",
+        fontSize:"0.5rem"
         
     },
     pagination:{

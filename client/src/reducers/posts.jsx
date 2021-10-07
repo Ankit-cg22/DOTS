@@ -1,10 +1,16 @@
 // reducers : 
 
-import { CREATE , UPDATE , DELETE , FETCH_ALL ,FETCH_BY_TAG , FETCH_POST_BY_ID } from '../constants/actionTypes';
+import { CREATE , UPDATE , DELETE , FETCH_ALL ,FETCH_BY_TAG , FETCH_POST_BY_ID ,LOADING_START , LOADING_END } from '../constants/actionTypes';
 
-export default (state=[] , action) => {
+export default (state={isLoading:true , posts:[]} , action) => {
     switch(action.type)
     {
+        case LOADING_START :
+            return {...state , isLoading : true}
+            
+        case LOADING_END :
+            return {...state , isLoading : false}
+            
         case FETCH_ALL:
             return {
                 ...state,
@@ -20,19 +26,19 @@ export default (state=[] , action) => {
             return { ...state  , post: action.payload}            
         
         case CREATE:
-            return [...state, action.payload]
+            return {...state , posts : [...state.posts, action.payload]}
             // spread all existing posts and add a new one
 
         case UPDATE:
-            return state.map((post) => ( post._id === action.payload._id ? action.payload : post));
-
+            return {...state , posts : state.posts.map((post) => ( post._id === action.payload._id ? action.payload : post))};
+     
             // what does it mean?
             // map over all posts , if id of any post is equal to the id of the post that we have in the payload
             // then return the updated post
             // other wise it is not a post that we updated , so return it as it is.
         
         case DELETE:
-            return state.filter((post) => post._id !== action.payload);
+            return {...state , posts : state.posts.filter((post) => post._id !== action.payload)};
             // those posts that satisfy the condition stay , others are deleted
 
         default :

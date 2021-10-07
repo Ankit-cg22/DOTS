@@ -33,14 +33,14 @@ export default function Home( {  currentId , setCurrentId }) {
    }
 
    const handleTagSearch=()=>{
-    if(tagSearch)
-    {
-        dispatch(getPostsByTag({search , tag : tagSearch}))
-        // history.push(`/posts/search?searchQuery=${search || 'none'}&tag=${tagSearch}`)
-        
-    }else{
-        history.push('/')
-    }
+        if(tagSearch)
+        {
+            dispatch(getPostsByTag({search , tag : tagSearch}))
+            history.push(`/posts/search?searchQuery=${search || 'none'}&tag=${tagSearch}`)
+            
+        }else{
+            history.push('/')
+        }
    }
 
 
@@ -56,9 +56,11 @@ export default function Home( {  currentId , setCurrentId }) {
                 {/* sm : on small devices , take 7 out of 12 spaces */}
                 <Posts  setCurrentId = {setCurrentId}  />
 
-                <Paper className={classes.pagination}>
-                    <Paginate page={page}/>
-                </Paper>
+               {(!tagSearch) && (
+                    <Paper className={classes.pagination}>
+                         <Paginate page={page}/>
+                     </Paper>
+               )}
                 
             </Grid>
             

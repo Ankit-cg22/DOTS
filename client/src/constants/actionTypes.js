@@ -6,4 +6,5 @@ export const AUTH = 'AUTH'
 export const LOGOUT = 'LOGOUT'
 export const FETCH_BY_TAG = 'FETCH_BY_TAG'
 export const FETCH_POST_BY_ID = 'FETCH_POST_BY_ID'
-
+export const LOADING_START = 'LOADING_START'
+export const LOADING_END = 'LOADING_END'
