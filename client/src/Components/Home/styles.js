@@ -14,7 +14,7 @@ export default makeStyles({
     },
     searchBox:{
         margin:"1rem 0rem",
-        height:"7rem ",
+        height:"fit-content ",
         display:"flex",
         flexDirection:"column",
         alignItems:"center",
@@ -26,6 +26,9 @@ export default makeStyles({
     pagination:{
         width:"50%",
         margin:"0px auto"
+    },
+    searchInput : {
+        margin:"0.2rem"
     }
 
 })

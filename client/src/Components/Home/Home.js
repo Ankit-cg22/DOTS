@@ -5,13 +5,15 @@ import { Link } from 'react-router-dom';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import Paginate from '../Pagination/Pagination';
 import { useLocation, useHistory } from 'react-router-dom';
-import { getPostsByTag } from '../../actions/posts';
+import { getPostsBySearch } from '../../actions/posts';
 import useStyles from './styles'
 import { useDispatch } from 'react-redux';
 
 function useQuery(){
     return new URLSearchParams(useLocation().search)
 }
+
+const initialSearchObject = {search:'' , tag :'' }
 
 export default function Home( {  currentId , setCurrentId }) {
    const classes = useStyles();
@@ -24,23 +26,30 @@ export default function Home( {  currentId , setCurrentId }) {
    const searchQuery = query.get('searchQuery')
 
    const [tagSearch , setTagSearch] = useState('');
-   const [search , setSearch] = useState('');
+   const [searchObject , setSearchObject] = useState(initialSearchObject);
+
+
 
    const dispatch = useDispatch()
 
    const handleTagInput=(e)=>{
-    setTagSearch(e.target.value)
+    setSearchObject({...searchObject , [e.target.name] : e.target.value})
    }
 
    const handleTagSearch=()=>{
-        if(tagSearch)
+       
+        if(searchObject.tag!='' || searchObject.search!='')
         {
-            dispatch(getPostsByTag({search , tag : tagSearch}))
-            history.push(`/posts/search?searchQuery=${search || 'none'}&tag=${tagSearch}`)
-            
+            dispatch(getPostsBySearch(searchObject))
+            history.push(`/posts/search?searchQuery=${searchObject.search!='' || 'none'}&tag=${searchObject.tag}`)
+           
+
         }else{
             history.push('/')
+          
         }
+        
+        
    }
 
 
@@ -56,7 +65,7 @@ export default function Home( {  currentId , setCurrentId }) {
                 {/* sm : on small devices , take 7 out of 12 spaces */}
                 <Posts  setCurrentId = {setCurrentId}  />
 
-               {(!tagSearch) && (
+               {(!searchObject.tag && !searchObject.search) && (
                     <Paper className={classes.pagination}>
                          <Paginate page={page}/>
                      </Paper>
@@ -78,7 +87,8 @@ export default function Home( {  currentId , setCurrentId }) {
                     }   
 
                     <Paper className={classes.searchBox}>
-                        <TextField label="Search tags" variant="outlined" onChange={(e)=>handleTagInput(e)} />
+                        <TextField className={classes.searchInput} label="Search title" variant="outlined" name="search" onChange={(e)=>handleTagInput(e)} />
+                        <TextField className={classes.searchInput} label="Search tags" variant="outlined" name="tag" onChange={(e)=>handleTagInput(e)} />
                         <Button variant ="contained" color="primary" onClick={() => handleTagSearch()}> Search </Button>
                     </Paper>
 
