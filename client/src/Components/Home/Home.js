@@ -41,7 +41,7 @@ export default function Home( {  currentId , setCurrentId }) {
         if(searchObject.tag!='' || searchObject.search!='')
         {
             dispatch(getPostsBySearch(searchObject))
-            history.push(`/posts/search?searchQuery=${searchObject.search!='' || 'none'}&tag=${searchObject.tag}`)
+            history.push(`/posts/search?search=${searchObject.search!='' || 'none'}&tag=${searchObject.tag}`)
            
 
         }else{

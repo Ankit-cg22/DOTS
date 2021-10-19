@@ -19,9 +19,11 @@ export default function Form( { currentId , setCurrentId }) {
     });
 
     const currentUser = JSON.parse(localStorage.getItem('profile'))
-
-    const postUpdate = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
-
+    
+    const postUpdate = useSelector((state) => (currentId ? state.posts.posts.find((message) => message._id === currentId) : null));
+    const posts = useSelector((state) => state.posts)
+    console.log("posts ye hai")
+    console.log(posts.posts)
     useEffect(()=> {
         if(postUpdate) setPostData(postUpdate);
     } , [postUpdate] )

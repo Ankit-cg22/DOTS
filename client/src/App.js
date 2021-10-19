@@ -49,7 +49,7 @@ const App= () => {
                         {!user ? 
                             <Auth currentId={currentId} setCurrentId ={setCurrentId}/>
                         :
-                            <Redirect to='/posts'/>
+                            <Redirect to='/'/>
                         }
 
                         {/* if there is a logged in user and he is trying to access '/auth' we redirect him to the posts page */}
