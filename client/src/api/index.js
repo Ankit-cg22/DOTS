@@ -23,6 +23,8 @@ export const updatePost = ( id , updatedPost) => API.patch(`/posts/${id}`, updat
 export const deletePost = (id) => API.delete(`/posts/${id}`)
 export const updateLikes = (id) => API.patch(`/posts/${id}/likePost`)
 
+export const postComment= (commentString , id ) => API.post(`/posts/${id}/postComment` , {commentString})
+
 //auth
 
 export const signUp =  (authFormData) => API.post('/user/signup' , authFormData)

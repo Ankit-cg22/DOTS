@@ -153,3 +153,21 @@ export const deletePost = async(req, res) => {
     res.json( {message : "Post deleted successfully"})
 
 }
+
+export const postComment=  async(req, res) => {
+    const { id } =req.params;
+    const { commentString } = req.body;
+
+    // fetch the post
+    const post = await PostMessage.findById(id)
+
+    // add new data
+    post.comments.push(commentString)
+
+    // update the data base with the new data
+    const updatedPost = await PostMessage.findByIdAndUpdate(id , post , { new : true});
+
+    res.json(updatedPost)
+
+
+}

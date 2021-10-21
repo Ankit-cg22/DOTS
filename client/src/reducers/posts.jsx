@@ -1,6 +1,6 @@
 // reducers : 
 
-import { CREATE , UPDATE , DELETE , FETCH_ALL ,FETCH_BY_TAG , FETCH_POST_BY_ID ,LOADING_START , LOADING_END } from '../constants/actionTypes';
+import { CREATE , UPDATE , DELETE , FETCH_ALL ,FETCH_BY_TAG , FETCH_POST_BY_ID ,LOADING_START , LOADING_END , COMMENT } from '../constants/actionTypes';
 
 export default (state={isLoading:true , posts:[]} , action) => {
     switch(action.type)
@@ -40,6 +40,20 @@ export default (state={isLoading:true , posts:[]} , action) => {
         case DELETE:
             return {...state , posts : state.posts.filter((post) => post._id !== action.payload)};
             // those posts that satisfy the condition stay , others are deleted
+
+        case COMMENT :
+            return {
+                ...state ,
+                // idea is simple  : > the post in which comment was added , return it after adding the new comment to it
+                                    // > return all other posts as it is
+                posts : state.posts.map((post) => {
+                    if( post._id === action.payload._id ){
+                        return action.payload;
+                    }
+
+                    return post;
+                })
+            }
 
         default :
             return state;

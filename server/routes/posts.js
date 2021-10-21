@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getPosts,getPostsBySearch, createPost, updatePost, deletePost, updateLikes ,fetchPostById } from '../controllers/posts.js'
+import { getPosts,getPostsBySearch, createPost, updatePost, deletePost, updateLikes ,fetchPostById , postComment } from '../controllers/posts.js'
 import auth from '../middleware/auth.js'
 
 const router = express.Router();
@@ -25,5 +25,8 @@ router.delete('/:id', auth, deletePost)
 
 //like a post
 router.patch('/:id/likePost', auth, updateLikes)
+
+// post a comment
+router.post('/:id/postComment', auth , postComment)
 
 export default router;

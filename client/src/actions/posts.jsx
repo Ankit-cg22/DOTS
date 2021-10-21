@@ -12,7 +12,7 @@ import * as api from '../api';
 //  we can follow this above syntax but we need asynchronity
 // so we follow this below method( it uses redux thunk )
 
-import { CREATE , UPDATE , DELETE , FETCH_ALL , FETCH_BY_TAG , FETCH_POST_BY_ID , LOADING_START , LOADING_END} from '../constants/actionTypes';
+import { CREATE , UPDATE , DELETE , FETCH_ALL , FETCH_BY_TAG , FETCH_POST_BY_ID , LOADING_START , LOADING_END , COMMENT} from '../constants/actionTypes';
 
 
 export const getPosts = (page) => async (dispatch) => {
@@ -49,6 +49,7 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
         dispatch( {type : LOADING_END })
        
     } catch (error) {
+
         console.log(error.message);
     }
 
@@ -116,6 +117,21 @@ export const updateLikes = (id) => async (dispatch) =>{
 
         dispatch( { type: UPDATE , payload : data} )
     }catch(error){
+        console.log(error)
+    }
+}
+
+
+export const postComment = (commentString , id) => async(dispatch) => {
+    try {
+        const {data} = await api.postComment(commentString,id)
+        
+        // data : contains the new updated post (with the new comment added)
+        dispatch({ type : COMMENT , payload : data})
+
+        return data.comments;
+        
+    } catch (error) {
         console.log(error)
     }
 }
