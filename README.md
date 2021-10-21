@@ -11,6 +11,7 @@ A blog app made using MERN tech stack.
 - JWT authentication
 - Pagination
 - Search by tag
+- Comments
 
 <h2>Tech/Frameworks/Packages used </h2>
 
