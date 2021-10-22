@@ -2,7 +2,8 @@ import React, {useEffect , useState} from 'react'
 import useStyles from './styles'
 import {Grid ,Card , CardActions , CardContent, CardMedia ,Button , Typography,ButtonBase   } from '@material-ui/core'
 
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import ThumbUpAltIcon  from '@material-ui/icons/ThumbUpAlt';
+import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import moment from 'moment'
@@ -18,6 +19,18 @@ export default function Post( {post , setCurrentId}) {
 
     const openPost=()=>{
         history.push(`/posts/${post._id}`)
+    }
+
+    const userId = (currentUser?.result?._id )
+    const hasLiked = post?.likes.find((like) => like === userId)
+    const [likes , setLikes] = useState(post?.likes)
+
+    const handleLikeClick = async () => {
+        dispatch(updateLikes(post._id))
+
+        if(hasLiked) setLikes(post.likes.filter( (id) => id === userId ))
+        else setLikes([ ...post.likes , userId])
+
     }
 
     return (
@@ -41,8 +54,12 @@ export default function Post( {post , setCurrentId}) {
         </ButtonBase>
 
         <CardActions className={classes.cardActions}>
-            <Button disabled = { !currentUser?.result } size="small" color="primary" onClick={() => dispatch(updateLikes(post._id))}>
-                <ThumbUpAltIcon fontSize="small" /> : {post.likes.length} 
+            <Button disabled = { !currentUser?.result } size="small" color="primary" onClick={handleLikeClick}>
+                {hasLiked ? 
+                    <><ThumbUpAltIcon fontSize="small" /> : {likes.length}</>
+                :
+                    <><ThumbUpAltOutlined fontSize="small" /> : {likes.length} </>
+                }
             </Button>
 
             {( currentUser?.result?._id === post?.author) &&( // visible only if current user is creator of the post
