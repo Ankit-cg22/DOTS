@@ -38,5 +38,29 @@ A blog app made using MERN tech stack.
 
 ![Work Flow](https://user-images.githubusercontent.com/77494560/132367450-86cd5772-dca4-4ec5-b142-fba4c2b10a56.png)
 
-<h2>Currently working on</h2>
-Enhancing the frontend.
+
+<h2> How to run locally </h2>
+
+```
+ $ git clone https://github.com/Ankit-cg22/MERN-Blog-App
+  
+ $ cd MERN-Blog-App
+  
+```
+
+- Create a .env file .
+```
+ CONNECTION_URL= <set Mongo DB url>
+ 
+```
+- Run app on following url
+
+```
+ http://localhost:3000/
+```
+
+<h2>Author</h2>
+
+[@Ankit Das](https://github.com/Ankit-cg22)
+
+
