@@ -78,7 +78,7 @@ export const createPost = (post) => async (dispatch) =>{
     try {
         const {data} = await api.createPost(post);
         // making  a post request to backend
-
+        
         dispatch({ type : CREATE , payload : data})
 
     } catch (error) {

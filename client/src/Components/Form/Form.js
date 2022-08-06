@@ -30,7 +30,6 @@ export default function Form( { currentId , setCurrentId }) {
 
     const handleSubmit= (e) => {
         e.preventDefault();
-
         if( currentId)
         {
             // if a currentId is present , it means we are updating a pre-existing post 

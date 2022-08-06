@@ -38,7 +38,7 @@ export default function Home( {  currentId , setCurrentId }) {
 
    const handleTagSearch=()=>{
        
-        if(searchObject.tag!='' || searchObject.search!='')
+        if(searchObject.tag!=='' || searchObject.search!=='')
         {
             dispatch(getPostsBySearch(searchObject))
             history.push(`/posts/search?search=${searchObject.search!='' || 'none'}&tag=${searchObject.tag}`)

@@ -33,6 +33,9 @@ export default function Post( {post , setCurrentId}) {
 
     }
 
+    console.log(currentUser?.result?._id)
+    console.log(post?.author)
+
     return (
         <Card className={classes.card}>
         <ButtonBase className={classes.cardAction} onClick={openPost}>
@@ -44,7 +47,7 @@ export default function Post( {post , setCurrentId}) {
             <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
             
             <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">{post.message}</Typography>
+                <Typography variant="body2" color="textSecondary" component="p">{post.message.split(' ').splice(0, 20).join(' ')}...</Typography>
             </CardContent>
             <div className={classes.details}>
                 <Typography variant="body2" color="textSecondary" component="h2">

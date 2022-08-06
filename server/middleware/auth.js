@@ -22,7 +22,7 @@ const auth = async (req ,res , next)  => {
         // =-=-=-=-=-= Checking if the user is allowed to do the actions(delete , edit) =-=-=-=-=-=-=-=-=
       
         // receive the token from frontend
-        const token = req.headers.authorization.split(" ")[1]; 
+        const token = req.headers.authorization?.split(" ")[1]; 
 
         // const isCustomAuth = token.length < 500 ;
         /*

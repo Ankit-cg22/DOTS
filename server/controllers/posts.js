@@ -13,7 +13,7 @@ export const getPosts = async(req , res)=> {
 
     try {
         
-        const LIMIT = 3 ; // 3 posts per page
+        const LIMIT = 9 ; // 9 posts per page
         const startIndex = (Number(page) - 1) * LIMIT ; // in the query string , page becomes string , to convert it to number we use Number()
         // total number of posts
         const total = await PostMessage.countDocuments({})
@@ -75,16 +75,19 @@ export const createPost = async(req , res)=> {
     // create new post in the db using this postBody
 
     const newPost = new PostMessage({ ...post , author : req.userId , createdAt: new Date().toISOString() }); // we save it to the db using the model
-
+    
     try {
         await newPost.save();
         // try saving it to the db
 
         res.status(201).json(newPost);
+
     } catch (error) {
         console.log(error)
+        
         res.status(409).json({message : error.message});
     }
+
 }
 
 
