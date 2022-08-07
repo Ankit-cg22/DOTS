@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create( { baseURL : 'http://localhost:5000' } )
+const API = axios.create( { baseURL : 'https://dots-backend-cg.herokuapp.com' } )
 // we just created an axios instance with base url set at shown
 // all api calls are made on top of this base url
 
