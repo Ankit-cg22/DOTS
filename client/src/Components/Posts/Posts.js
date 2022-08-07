@@ -26,10 +26,10 @@ export default function Posts( {setCurrentId }) {
 
     return (
         !posts?.length ? <CircularProgress/>: (
-            <Grid className ={classes.mainContainer} containter alignItems="stretch" spacing={1}>
+            <Grid className ={classes.mainContainer} containter alignItems="stretch" spacing={2}>
 
                 {posts.map( (post) => (
-                    <Grid key ={post._id } item md={4}  xs ={10} sm={6}>
+                    <Grid className={classes.postWrapper} key ={post._id } item md={12}  xs ={12} sm={12}>
                         <Post post={post} setCurrentId={setCurrentId}  />
                     </Grid>
                 ))

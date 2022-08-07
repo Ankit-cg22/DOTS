@@ -38,49 +38,54 @@ export default function Post( {post , setCurrentId}) {
 
     return (
         <Card className={classes.card}>
-        <ButtonBase className={classes.cardAction} onClick={openPost}>
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
-                <div className={classes.overlay}>
-                    <Typography variant="h6">{post.name}</Typography>
-                    <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
-                </div>
-            <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
+            <div className={classes.postInfo}>
+                <ButtonBase className={classes.cardAction} onClick={openPost}>
+                    <div className={classes.overlayWrapper}>
+                        <div></div>
+                        <div className={classes.overlay}>   
+                            <Typography variant="body3">{post.name}</Typography>
+                            <Typography variant="body3">{moment(post.createdAt).fromNow()}</Typography>
+                        </div>
+                    </div>
+
+                    <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
+                    
+                    <CardContent className={classes.description}>
+                        <Typography variant="body2" color="textSecondary" component="p">{post.message.split(' ').splice(0, 15).join(' ')}...</Typography>
+                    </CardContent>
+                    <div className={classes.details}>
+                        <Typography variant="body2" color="textSecondary" component="h2">
+                            {post.tags.map((tag) => `#${tag} `)}
+                        </Typography>
+                    </div>
+                </ButtonBase>
+
+                <CardActions className={classes.cardActions}>
+                    <Button disabled = { !currentUser?.result } size="small" color="primary" onClick={handleLikeClick}>
+                        {hasLiked ? 
+                            <><ThumbUpAltIcon fontSize="small" /> : {likes.length}</>
+                        :
+                            <><ThumbUpAltOutlined fontSize="small" /> : {likes.length} </>
+                        }
+                    </Button>
+
+                    {( currentUser?.result?._id === post?.author) &&( // visible only if current user is creator of the post
+                        <Grid >
             
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">{post.message.split(' ').splice(0, 20).join(' ')}...</Typography>
-            </CardContent>
-            <div className={classes.details}>
-                <Typography variant="body2" color="textSecondary" component="h2">
-                    {post.tags.map((tag) => `#${tag} `)}
-                </Typography>
+                        <Button component={Link} to="/create" size="small" color="primary" onClick={() => setCurrentId(post._id)}>
+                                <EditIcon fontSize="default" />
+                        </Button>
+            
+                        <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
+                            <DeleteIcon fontSize="small" /> 
+                        </Button>
+                    </Grid> 
+                    )
+                    }
+
+                </CardActions>
             </div>
-        </ButtonBase>
-
-        <CardActions className={classes.cardActions}>
-            <Button disabled = { !currentUser?.result } size="small" color="primary" onClick={handleLikeClick}>
-                {hasLiked ? 
-                    <><ThumbUpAltIcon fontSize="small" /> : {likes.length}</>
-                :
-                    <><ThumbUpAltOutlined fontSize="small" /> : {likes.length} </>
-                }
-            </Button>
-
-            {( currentUser?.result?._id === post?.author) &&( // visible only if current user is creator of the post
-                 <Grid >
-    
-                 <Button component={Link} to="/create" size="small" color="primary" onClick={() => setCurrentId(post._id)}>
-                         <EditIcon fontSize="default" />
-                 </Button>
-     
-                 <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
-                     <DeleteIcon fontSize="small" /> 
-                 </Button>
-             </Grid> 
-            )
-            }
-
-        </CardActions>
-
       
 
         </Card>

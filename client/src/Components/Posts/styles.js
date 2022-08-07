@@ -3,8 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
   mainContainer: {
     display: 'flex',
+    flexDirection : 'column',
     alignItems: 'center',
-    flexWrap :"wrap",
+    // flexWrap :"wrap",
 
   },
   smMargin: {
@@ -13,4 +14,8 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: 'center',
   },
+  postWrapper:{
+    
+    width :"80%"
+  }
 }));  

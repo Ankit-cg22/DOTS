@@ -29,6 +29,28 @@ export default makeStyles({
     },
     searchInput : {
         margin:"0.2rem"
+    },
+    mainContainer:{
+        
+        width:'100%',
+        ['@media (max-width:780px)']: {
+            display : "flex",
+            flexDirection : "column",
+        },
+    },
+    widgetContainer:{
+        padding: "10px 10px",
+        width:"100%",
+       
+        textAlign : "center",
+        ['@media (max-width:780px)']: {
+            display : "flex",
+            flexDirection : "column",
+            alignItems:"center",
+            justifyContent:"center",
+           
+        },
+        margin: "0 auto"  
     }
 
 })

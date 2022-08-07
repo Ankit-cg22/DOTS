@@ -59,8 +59,8 @@ export default function Home( {  currentId , setCurrentId }) {
 
     return (
 
-        <Grid container >
-            <Grid item md={10} xs={10} sm={10} >
+        <Grid container className ={classes.mainContainer} >
+            <Grid item md={10} xs={12} sm={12} >
                 {/* xs : xtra small , take whole space in xs devices */}
                 {/* sm : on small devices , take 7 out of 12 spaces */}
                 <Posts  setCurrentId = {setCurrentId}  />
@@ -73,7 +73,7 @@ export default function Home( {  currentId , setCurrentId }) {
                 
             </Grid>
             
-            <Grid item md={2} xs={2} sm={2}>
+            <Grid item md={2} xs={6} sm={6} className={classes.widgetContainer}>
                 
                     {user?.result?.name?
                         <Button className = {classes.addButton} component={Link} to="/create"  color ="secondary" variant="contained">
