@@ -12,8 +12,7 @@ import * as api from '../api';
 //  we can follow this above syntax but we need asynchronity
 // so we follow this below method( it uses redux thunk )
 
-import { CREATE , UPDATE , DELETE , FETCH_ALL , FETCH_BY_TAG , FETCH_POST_BY_ID , LOADING_START , LOADING_END , COMMENT} from '../constants/actionTypes';
-
+import { CREATE , UPDATE , DELETE , FETCH_ALL , FETCH_BY_TAG , FETCH_POST_BY_ID , LOADING_START , LOADING_END , COMMENT , FETCH_POST_BY_USER_ID} from '../constants/actionTypes';
 
 export const getPosts = (page) => async (dispatch) => {
     
@@ -71,6 +70,20 @@ export const getPost = (id) => async(dispatch) => {
         console.log(error.message);
     }
 
+}
+
+export const getPostByUserId = (id) => async(dispatch) => {
+    try{
+        dispatch( {type : LOADING_START })
+        
+        const { data } = await api.fetchPostsByUserId(id);
+        
+        dispatch( { type : FETCH_POST_BY_USER_ID , payload : data});
+        
+        dispatch( {type : LOADING_END })
+    }catch(error){
+        console.log(error.message)
+    }
 }
 
 

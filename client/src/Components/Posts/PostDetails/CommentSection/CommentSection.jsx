@@ -13,12 +13,13 @@ export default function CommentSection( {post} ){
     const dispatch = useDispatch()
     const classes = useStyles()
     const [comments , setComments] = useState(post?.comments);
-    const [comment , setComment] = useState('');
+    const [comment , setComment] = useState("");
 
     // grab the user who is commenting(he is signed in so local stroage -> 'profile' has the data about user)
     const user = JSON.parse(localStorage.getItem('profile'))
 
     const handleCommentSubmit = async () =>{
+        setComment("")
         // form the string that we want to store(and later show) : "user's_name : comment he made"
         const commentString = `${user?.result.name} : ${comment} `
 
@@ -29,7 +30,7 @@ export default function CommentSection( {post} ){
 
         setComments(newComments)
 
-        setComment('')
+        
     }
 
     return(
@@ -58,7 +59,7 @@ export default function CommentSection( {post} ){
                             rows={3}
                             variant="outlined"
                             label="Write something...."
-                            vaue={comment}
+                            value={comment}
                             onChange= {(e) => setComment(e.target.value)}
                         />
                         <Button 
@@ -68,6 +69,7 @@ export default function CommentSection( {post} ){
                             disabled={!comment} 
                             onClick={handleCommentSubmit}
                             color="primary"
+                            
                         >
                             COMMENT 
                         </Button>

@@ -39,11 +39,12 @@ export default function Navbar() {
     }, [location])
     // we call it when url location changes
 
+    console.log(user);
    
 
     return (
         <AppBar className={classes.appBar} position='static' color='inherit'>
-            <div className="brandContainer">
+            <div className={classes.brandContainer}>
                 <img className={classes.image} src={dots} alt="dots-logo" height='50'/>    
                 
                 <Typography  component={Link} to="/"  className={classes.heading} variant='h2' align='center'>DOTS</Typography>                    
@@ -54,7 +55,7 @@ export default function Navbar() {
                 {user ?
                     <div className={classes.profile}>
 
-                        <Avatar alt = {user.result.name} >
+                        <Avatar alt = {user.result.name} component={Link} to={`/profile/${user.result._id}`}>
                             {user.result.name.charAt(1)}
                         </Avatar>
                         {/* <Typography className={classes.userName} variant="h6">
@@ -67,7 +68,7 @@ export default function Navbar() {
                         {/* when we creat user it will have a imageUrl property */}
                     </div>
                     :
-                    <div className={classes.profile}>
+                    <div className={classes.loginButton }>
                       
                             <Button component={Link} to="/auth"  color ="primary" variant="contained">
                                 Log In

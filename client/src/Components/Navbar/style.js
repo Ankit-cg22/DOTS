@@ -10,14 +10,27 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '10px 50px',
+    '@media (max-width:479px)': {
+      padding: '10px 0px',
+    },
     width:"100%"
   },
   heading: {
     color: 'black',
     textDecoration: 'none',
+    fontSize: "5vw",
+    height:"100%",
+    margin:"auto auto",
+    '@media (max-width:479px)': {
+      fontSize: "8vw",
+    },
   },
   image: {
     marginLeft: '15px',
+    height:"5vw",
+    '@media (max-width:479px)': {
+      height:"8vw",
+    }
   },
   toolbar: {
     display: 'flex',
@@ -36,11 +49,14 @@ export default makeStyles((theme) => ({
   },
   brandContainer: {
     display: 'flex',
-    flexDirection : 'column',
+
     alignItems: 'center',
   },
   purple: {
     
     backgroundColor: yellow[100],
   },
+  loginButton:{
+    fontSize: "1.2vw",
+  }
 }));

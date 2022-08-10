@@ -1,7 +1,7 @@
 import React, {useEffect , useState} from 'react'
 import useStyles from './styles'
 import {Grid ,Card , CardActions , CardContent, CardMedia ,Button , Typography,ButtonBase   } from '@material-ui/core'
-
+import LocationOnIcon  from '@material-ui/icons/LocationOn';
 import ThumbUpAltIcon  from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -33,9 +33,9 @@ export default function Post( {post , setCurrentId}) {
 
     }
 
-    console.log(currentUser?.result?._id)
-    console.log(post?.author)
-
+    // console.log(currentUser?.result?._id)
+    // console.log(post?.author)
+    // console.log(window.innerWidth)
     return (
         <Card className={classes.card}>
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
@@ -52,7 +52,13 @@ export default function Post( {post , setCurrentId}) {
                     <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
                     
                     <CardContent className={classes.description}>
-                        <Typography variant="body2" color="textSecondary" component="p">{post.message.split(' ').splice(0, 15).join(' ')}...</Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                        {window.innerWidth > 400 ? 
+                            post.message.split(' ').splice(0, 30).join(' ')
+                        : 
+                            post.message.split(' ').splice(0, 8).join(' ')
+                        }...
+                        </Typography>
                     </CardContent>
                     <div className={classes.details}>
                         <Typography variant="body2" color="textSecondary" component="h2">
@@ -70,8 +76,14 @@ export default function Post( {post , setCurrentId}) {
                         }
                     </Button>
 
+                    <Button className={classes.visitButton} color="primary" variant="contained" >
+                        <a className={classes.visitLink} href={`https://maps.google.com/?q=${post.latitude},${post.longitude}`} target="_blank">
+                            <LocationOnIcon/>    
+                        </a>      
+                    </Button>
+
                     {( currentUser?.result?._id === post?.author) &&( // visible only if current user is creator of the post
-                        <Grid >
+                        <Grid className={classes.authorButtons }>
             
                         <Button component={Link} to="/create" size="small" color="primary" onClick={() => setCurrentId(post._id)}>
                                 <EditIcon fontSize="default" />

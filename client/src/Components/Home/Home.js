@@ -73,7 +73,7 @@ export default function Home( {  currentId , setCurrentId }) {
                 
             </Grid>
             
-            <Grid item md={2} xs={6} sm={6} className={classes.widgetContainer}>
+            <Grid item md={2} xs={12} sm={6} className={classes.widgetContainer}>
                 
                     {user?.result?.name?
                         <Button className = {classes.addButton} component={Link} to="/create"  color ="secondary" variant="contained">

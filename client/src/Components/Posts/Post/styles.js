@@ -2,14 +2,24 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
   media: {
-    height:0,
-    paddingTop: '56.25%',
+    // height:"35%",
+    
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
+    
+    '@media (max-width:700px)': {
+      paddingTop: '48%',
+    },
+    '@media (max-width:600px)': {
+      paddingTop: '56.25%',
+    },
     '@media (min-width:700px)': {
+      paddingTop: '56.25%',
       width : "45%" ,
       height : '100%',
-    }
+    },
+    
+    
   },
   postInfo: {
     '@media (min-width:700px)': {
@@ -32,24 +42,28 @@ export default makeStyles({
     height: '100%',
   },
   card: {
+    
     display: 'flex',
     justifyContent: 'center',
     borderRadius: '1rem',
-
+    
     '@media (max-width:700px)': {
       flexDirection: 'column',
-      height: '80vh',
+      height: '80vw',
       justifyContent: 'space-between',
       width:"80%",
       position: 'relative',
     },
-
+  
     '@media (min-width:700px)': {
-      minWidth:'100%',
-      maxWidth: '100%',
+      width:'100%',
       maxHeight : "270px" ,
     },
       margin:'1rem',
+    '@media (max-width:600px)': {
+      height : "95vw",
+      
+    },
   },
   overlay: {
     
@@ -104,11 +118,14 @@ export default makeStyles({
 
   },
   title: {
-    padding: '10px 0px',
+    
     '@media (max-width:700px)':{
       paddingLeft:"10px",
+      padding: '10px 0px',
+    },
+    '@media (max-width:600px)':{
+      padding: '5px 5px',
     }
-
   },
   cardActions: {
     padding: '0 0px 8px 0px',
@@ -116,7 +133,8 @@ export default makeStyles({
     justifyContent: 'space-between',
     '@media (min-width:700px)': {
       height : "15%",
-    }
+    },
+
   },
   cardAction: {
     '@media (max-width:700px)' :{
@@ -135,7 +153,7 @@ export default makeStyles({
       width : "100%",
       alignItems: "flex-start",
       justifyContent:"space-between",
-    }
+    },
     
   },
   imageD: {
@@ -146,8 +164,27 @@ export default makeStyles({
       textAlign:"left",
       padding : 0
     },
-
-    paddingLeft : "10px",
-
+    '@media (max-width:600px)': {
+      paddingLeft : "10px",
+      paddingTop:"0px",
+      maxHeight:"50%",
+    }
+  },
+  visitLink:{
+    textDecoration:"none",
+    color:"white",
+    padding:"0",
+    maxHeight:"25px",
+    widht:"fit-content"
+  },
+  visitButton:{
+    marginRight : "3px"
+  },
+  authorButtons:{
+    '@media (max-width:700px)': {
+      width:"40%",
+      display:"flex",
+      paddingRight:"2px"
+    }
   }
 });

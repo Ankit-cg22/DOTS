@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
     commentsOuter:{
         display:"flex",
         justifyContent:"space-between",
@@ -19,6 +19,10 @@ export default makeStyles(() => ({
     },
     submitButton:{
         width:"20%",    
-        marginLeft : "1rem"
-    }
+        marginLeft : "0.5rem",
+        [theme.breakpoints.down('sm')]: {
+            fontSize : "0.7rem"
+        }
+    },
+    
 }))

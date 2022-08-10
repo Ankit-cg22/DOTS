@@ -1,5 +1,5 @@
 import React , {useEffect} from 'react'
-import {Paper , Typography , CircularLoader , Divider } from '@material-ui/core'
+import {Paper , Typography , CircularLoader , Divider , Button} from '@material-ui/core'
 import { useDispatch , useSelector } from 'react-redux'
 import moment from 'moment'
 import {useParams , useHistory} from 'react-router-dom'
@@ -32,19 +32,24 @@ export default function PostDetails() {
 
     return (
         <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
-        <div className={classes.card}>
-            <div className={classes.section}>
-            <Typography variant="h3" component="h2">{post.title}</Typography>
-            <Typography gutterBottom variant="h6" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
-            <Typography gutterBottom variant="body1" component="p">{post.message}</Typography>
-            <Typography variant="h6">Created by: {post.name}</Typography>
-            <Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
-            <Divider style={{ margin: '20px 0' }} />
+            <div className={classes.card}>
+                <div className={classes.section}>
+                        <div className={classes.topDiv}>
+                            <Typography variant="h3" component="h2">{post.title}</Typography>
+                            <Button className={classes.visitButton} color="primary" variant="contained" >
+                                <a className={classes.visitLink} href={`https://maps.google.com/?q=${post.latitude},${post.longitude}`} target="_blank">Visit</a>      
+                            </Button>
+                        </div>
+                        <Typography gutterBottom variant="h6" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
+                        <Typography gutterBottom variant="body1" component="p">{post.message}</Typography>
+                        <Typography variant="h6">Created by: {post.name}</Typography>
+                        <Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
+                        <Divider style={{ margin: '20px 0' }} />
 
-            <CommentSection post = {post} />
-           
-            <Divider style={{ margin: '20px 0' }} />
-            </div>
+                    <CommentSection post = {post} />
+                
+                    <Divider style={{ margin: '20px 0' }} />
+                </div>
                 <div className={classes.imageSection}>
                     <img width="200px" height="200px" className={classes.media} src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />
                 </div>

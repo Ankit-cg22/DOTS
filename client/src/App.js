@@ -6,7 +6,7 @@ import EditForm from './Components/EditForm/EditForm';
 import PostDetails from './Components/Posts/PostDetails/PostDetails';
 import { BrowserRouter , Switch , Route ,Redirect} from 'react-router-dom';
 import Auth from './Components/Auth/Auth';
-
+import Profile from './Components/Profile/Profile';
 
 import  { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -64,6 +64,9 @@ const App= () => {
                         <PostDetails/>
                     </Route>
                     
+                    <Route exact path="/profile/:id" > 
+                        <Profile currentId={currentId} setCurrentId ={setCurrentId}/>                        
+                    </Route> 
                    
                 </Switch>
             

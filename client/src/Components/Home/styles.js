@@ -20,7 +20,10 @@ export default makeStyles({
         alignItems:"center",
         justifyContent:"space-around",
         padding:"0.5rem",
-        fontSize:"0.5rem"
+        fontSize:"0.5rem",
+        '@media (max-width:600px)': {
+            width:"90%",
+        }
         
     },
     pagination:{
@@ -33,7 +36,9 @@ export default makeStyles({
     mainContainer:{
         
         width:'100%',
-        ['@media (max-width:780px)']: {
+        maxWidth: "1400px",
+        margin: "auto",
+        '@media (max-width:780px)': {
             display : "flex",
             flexDirection : "column",
         },
@@ -43,7 +48,7 @@ export default makeStyles({
         width:"100%",
        
         textAlign : "center",
-        ['@media (max-width:780px)']: {
+        '@media (max-width:780px)': {
             display : "flex",
             flexDirection : "column",
             alignItems:"center",
