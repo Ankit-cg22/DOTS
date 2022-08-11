@@ -9,6 +9,10 @@ export default makeStyles( (theme) => ({
         flexDirection: 'column',
         justifyContent:"center",
         alignItems:"center",
+        margin:"auto",
+        '@media(min-width:600px) and (max-width:900px)':{
+            width:"50%",
+        },
     },
     mainContainer:{
         display: 'flex',
@@ -45,5 +49,13 @@ export default makeStyles( (theme) => ({
         marginTop:"10px",
         width:"fit-content",
         margin: "auto"
+    },
+    CircularProgressHolder:{
+        width:"100%",
+        display : "flex",
+        alignItems:"center",
+        justifyContent:"center",
+     
     }
+   
 }));

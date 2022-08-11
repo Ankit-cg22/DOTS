@@ -28,7 +28,10 @@ export default makeStyles({
     },
     pagination:{
         width:"50%",
-        margin:"0px auto"
+        margin:"0px auto",
+        '@media(max-width:600px)':{
+            width:"90%",
+        }
     },
     searchInput : {
         margin:"0.2rem"

@@ -46,7 +46,7 @@ export default makeStyles({
     display: 'flex',
     justifyContent: 'center',
     borderRadius: '1rem',
-    
+    margin:"1rem auto",
     '@media (max-width:700px)': {
       flexDirection: 'column',
       height: '80vw',
@@ -59,10 +59,11 @@ export default makeStyles({
       width:'100%',
       maxHeight : "270px" ,
     },
-      margin:'1rem',
+  
     '@media (max-width:600px)': {
       height : "95vw",
-      
+      // width:"80vw",
+      position:"relative",
     },
   },
   overlay: {
@@ -134,6 +135,13 @@ export default makeStyles({
     '@media (min-width:700px)': {
       height : "15%",
     },
+    '@media(max-width:600px)':{
+      display:"flex",
+      justifyContent:"space-between",
+      alignItems:"center",
+      padding:"0px 5px"
+      
+    }
 
   },
   cardAction: {
@@ -178,13 +186,75 @@ export default makeStyles({
     widht:"fit-content"
   },
   visitButton:{
-    marginRight : "3px"
+    marginRight : "3px",
+    '@media(max-width:600px)':{
+      width:"20%",
+    }
   },
   authorButtons:{
     '@media (max-width:700px)': {
       width:"40%",
       display:"flex",
       paddingRight:"2px"
+    },
+    '@media(max-width:600px)':{
+      width:"30%",
+      position:"absolute",
+      top:"0",
+      right:"22%",
     }
+  },
+  editButton:{
+    '@media(max-width:600px)':{
+      color : "white",
+    }
+  },
+  deleteButton:{
+    '@media(max-width:600px)':{
+      color : "white",
+    }
+  },
+  modalBox:{
+    position: 'absolute' ,
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    backgroundColor: 'white',
+    boxShadow: 24,
+    height:"200px",
+    p: 4,
+    outline:"none",
+    borderRadius : "1rem",
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+    '@media(max-width:600px)':{
+      height:"150px",
+      width:"90vw"
+    }
+  },
+  deleteModalContainer:{
+    width:"fit-content",
+    
+    height:"50%",
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"space-around",
+    alignItems:"center",
+  },
+  deleteActionButtons:{
+
+    width:"100%",
+    display:"flex",
+    justifyContent:"space-between",
+    alignItems:"center",
+  },
+  deleteYesButton:{
+    width:"45%",
+  },
+  deleteNoButton:{
+    width:"45%",
   }
+  
 });

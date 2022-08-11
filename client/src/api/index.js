@@ -18,7 +18,7 @@ API.interceptors.request.use( (req) =>{
 export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
 export const fetchPostsBySearch = (searchQuery) => API.get(`/posts/search?search=${searchQuery.search || 'none' }&tag=${searchQuery.tag || 'none'}` )
 export const fetchPostById = (id) => API.get(`/posts/${id}`)
-export const fetchPostsByUserId = (id) => API.get(`/posts/user/${id}`)
+
 
 export const createPost = (newPost) => API.post('/posts', newPost);
 export const updatePost = ( id , updatedPost) => API.patch(`/posts/${id}`, updatedPost) // /posts/id ;
@@ -32,3 +32,4 @@ export const postComment= (commentString , id ) => API.post(`/posts/${id}/postCo
 export const signUp =  (authFormData) => API.post('/user/signup' , authFormData)
 export const signIn =  (authFormData) => API.post('/user/signin' , authFormData)
 
+export const fetchUserInfo = (id) => API.get(`/user/${id}`)

@@ -6,7 +6,7 @@ import {useParams , useHistory} from 'react-router-dom'
 import { getPost } from '../../../actions/posts'
 import LoadScreen from '../../LoadScreen/LoadScreen'
 import CommentSection from './CommentSection/CommentSection'
-
+import { Link } from 'react-router-dom';
 import useStyles from './styles'
 
 export default function PostDetails() {
@@ -29,7 +29,7 @@ export default function PostDetails() {
         <LoadScreen/>
        ) 
     }
-
+    console.log(post);
     return (
         <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
             <div className={classes.card}>
@@ -42,7 +42,10 @@ export default function PostDetails() {
                         </div>
                         <Typography gutterBottom variant="h6" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
                         <Typography gutterBottom variant="body1" component="p">{post.message}</Typography>
-                        <Typography variant="h6">Created by: {post.name}</Typography>
+                        <Typography variant="h6">
+                            Created by: 
+                            <Typography variant="h6" className={classes.profileNameLink} component={Link} to={`/profile/${post.author}`}>{post.name}</Typography>
+                        </Typography>
                         <Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
                         <Divider style={{ margin: '20px 0' }} />
 

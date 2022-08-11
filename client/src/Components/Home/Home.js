@@ -68,7 +68,7 @@ export default function Home( {  currentId , setCurrentId }) {
                {(!searchObject.tag && !searchObject.search) && (
                     <Paper className={classes.pagination}>
                          <Paginate page={page}/>
-                     </Paper>
+                    </Paper>
                )}
                 
             </Grid>

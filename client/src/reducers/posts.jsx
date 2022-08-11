@@ -1,6 +1,6 @@
 // reducers : 
 
-import { CREATE , UPDATE , DELETE , FETCH_ALL ,FETCH_BY_TAG , FETCH_POST_BY_ID ,LOADING_START , LOADING_END , COMMENT , FETCH_POST_BY_USER_ID } from '../constants/actionTypes';
+import { CREATE , UPDATE , DELETE , FETCH_ALL ,FETCH_BY_TAG , FETCH_POST_BY_ID ,LOADING_START , LOADING_END , COMMENT ,USER_INFO_BY_ID } from '../constants/actionTypes';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state={isLoading:true , posts:[]} , action) => {
@@ -26,8 +26,7 @@ export default (state={isLoading:true , posts:[]} , action) => {
         case FETCH_POST_BY_ID:
             return { ...state  , post: action.payload}        
             
-        case FETCH_POST_BY_USER_ID:
-            return {...state , postsByUserId: action.payload}
+        
         
         case CREATE:
             return {...state , posts : [...state.posts, action.payload]}
@@ -58,6 +57,8 @@ export default (state={isLoading:true , posts:[]} , action) => {
                     return post;
                 })
             }
+        case USER_INFO_BY_ID:
+            return {...state , postsByUserId: action.payload.posts , profileUser : action.payload.user}
 
         default :
             return state;

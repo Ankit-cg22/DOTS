@@ -47,4 +47,12 @@ export default makeStyles((theme) => ({
         textDecoration:"none",
         color:"white",
       },
+      profileNameLink:{
+        textDecoration:"none",
+        color : "#55AAD1",
+        '&:hover':{
+          borderBottom:"1px solid #55AAD1"
+
+        }
+      }
 }))

@@ -1,6 +1,6 @@
 import React, {useEffect , useState} from 'react'
 import useStyles from './styles'
-import {Grid ,Card , CardActions , CardContent, CardMedia ,Button , Typography,ButtonBase   } from '@material-ui/core'
+import {Grid ,Card , CardActions , CardContent, CardMedia ,Button , Typography,ButtonBase , Modal , Box   } from '@material-ui/core'
 import LocationOnIcon  from '@material-ui/icons/LocationOn';
 import ThumbUpAltIcon  from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
@@ -16,7 +16,7 @@ export default function Post( {post , setCurrentId}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const currentUser = JSON.parse(localStorage.getItem('profile'));
-
+    const [openModal , setOpenModal] = useState(false)
     const openPost=()=>{
         history.push(`/posts/${post._id}`)
     }
@@ -33,9 +33,13 @@ export default function Post( {post , setCurrentId}) {
 
     }
 
-    // console.log(currentUser?.result?._id)
-    // console.log(post?.author)
-    // console.log(window.innerWidth)
+    const handleDeleteClick= () => {
+        
+        dispatch(deletePost(post._id))
+        setOpenModal(false)
+    }
+    
+    
     return (
         <Card className={classes.card}>
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
@@ -68,7 +72,7 @@ export default function Post( {post , setCurrentId}) {
                 </ButtonBase>
 
                 <CardActions className={classes.cardActions}>
-                    <Button disabled = { !currentUser?.result } size="small" color="primary" onClick={handleLikeClick}>
+                    <Button className={ classes.likebutton }  disabled = { !currentUser?.result } size="small" color="primary" onClick={handleLikeClick}>
                         {hasLiked ? 
                             <><ThumbUpAltIcon fontSize="small" /> : {likes.length}</>
                         :
@@ -76,29 +80,48 @@ export default function Post( {post , setCurrentId}) {
                         }
                     </Button>
 
+                    
+
+                    {( currentUser?.result?._id === post?.author) &&( // visible only if current user is creator of the post
+                        <Grid className={classes.authorButtons }>
+            
+                        <Button component={Link} to="/create" size="small" color="primary" onClick={() => setCurrentId(post._id)}>
+                                <EditIcon className={classes.editButton}  fontSize="default" />
+                        </Button>
+            
+                        <Button size="small" color="primary" onClick={()=>setOpenModal(true)}>
+                            <DeleteIcon className={classes.deleteButton} fontSize="small" /> 
+                        </Button>
+                    </Grid> 
+                    )
+                    }
+
                     <Button className={classes.visitButton} color="primary" variant="contained" >
                         <a className={classes.visitLink} href={`https://maps.google.com/?q=${post.latitude},${post.longitude}`} target="_blank">
                             <LocationOnIcon/>    
                         </a>      
                     </Button>
 
-                    {( currentUser?.result?._id === post?.author) &&( // visible only if current user is creator of the post
-                        <Grid className={classes.authorButtons }>
-            
-                        <Button component={Link} to="/create" size="small" color="primary" onClick={() => setCurrentId(post._id)}>
-                                <EditIcon fontSize="default" />
-                        </Button>
-            
-                        <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
-                            <DeleteIcon fontSize="small" /> 
-                        </Button>
-                    </Grid> 
-                    )
-                    }
-
                 </CardActions>
             </div>
       
+            <Modal
+                open={openModal}
+                onClose={()=>{}}
+                BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.5)" , opacity:"0.5" } }}
+            >
+                <Box className={classes.modalBox}>
+                    <div className={classes.deleteModalContainer}>
+                        <Typography>
+                            Do you want to delete the post ?
+                        </Typography>
+                        <div className={classes.deleteActionButtons}>
+                                <Button className={classes.deleteNoButton} color="primary" variant="contained" onClick={()=>setOpenModal(false)}> No </Button>
+                                <Button className={classes.deleteYesButton} color="secondary" variant="contained" onClick={handleDeleteClick}> Yes</Button>
+                        </div>
+                    </div>
+                </Box>
+        </Modal>
 
         </Card>
     )

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import {Paper , Typography , CircularProgress , Divider , Grid} from '@material-ui/core'
 import useStyles from './styles'
 import { useDispatch , useSelector } from 'react-redux'
-import { getPostByUserId } from '../../actions/posts'
+import { getUserInfo } from '../../actions/posts'
 import {useParams , useHistory} from 'react-router-dom'
 import Post from '../Posts/Post/Post'
 
@@ -11,21 +11,26 @@ export default function Profile({setCurrentId}) {
     const dispatch = useDispatch()
     const currentUser = JSON.parse(localStorage.getItem('profile'));
     const { id } = useParams()
-    const { postsByUserId }  = useSelector((state) => state.posts)
-    console.log("posts ")
-    console.log(postsByUserId)
+    const { postsByUserId , profileUser , isLoading }  = useSelector((state) => state.posts)
+    
     useEffect(()=>{
-        dispatch(getPostByUserId(id))
+        dispatch(getUserInfo(id))
     } , [])
+    console.log(postsByUserId)
+    console.log(profileUser)
+   
+    if(isLoading){
+        return <div className={classes.CircularProgressHolder}><CircularProgress/></div>
+    }
 
     return (
         <Grid container className ={classes.mainContainer} >
             <Grid item md={10} xs={12} sm={12} >
-                <Typography variant="h6" color="white" className={classes.header}> {currentUser.result.name}'s Posts </Typography>
+                <Typography variant="h6" color="white" className={classes.header}> {profileUser?.name}'s Posts </Typography>
                 
                 {!postsByUserId?.length ? 
                     <div className={classes.progressHolder}>
-                        <CircularProgress/> 
+                        <Typography>No posts by {profileUser?.name} yet.</Typography>
                     </div>
                 :
                     <Grid className ={classes.mainPostsContainer} containter alignItems="stretch" spacing={2}>
@@ -41,12 +46,12 @@ export default function Profile({setCurrentId}) {
             </Grid>
     
             
-            <Grid item md={2} xs={12} sm={6} className={classes.widgetContainer}>
+            <Grid item md={2} xs={12} sm={12} className={classes.widgetContainer}>
                 <Paper className={classes.InfoContainer}>
                     <img height= "70px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_mtZXdw8cxNdGunsejk7FQ&usqp=CAU"/>
                     <div className={classes.infoWrapper}>
-                        <Typography variant="body2">Name: {currentUser.result.name}</Typography>
-                        <Typography variant="body2">Email: {currentUser.result.email}</Typography>
+                        <Typography variant="body2">Name: {profileUser?.name}</Typography>
+                        <Typography variant="body2">Email: {profileUser?.email}</Typography>
                     </div>
                 </Paper>
             </Grid>

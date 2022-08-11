@@ -11,7 +11,10 @@ export default makeStyles((theme) => ({
     width:"60%",
     height:"fit-content",
     display:"flex",
-    margin:"0px auto "
+    margin:"0px auto ",
+    '@media(max-width:600px)' :{
+      width:"90%",
+    }
   },
   form: {
     display: 'flex',
@@ -106,6 +109,12 @@ export default makeStyles((theme) => ({
     '@media(max-width:700px)':{
       width:"95%"
     },
+    
+   
+  },
+  locSearchBoxSub:{
+    width:"90%",
+    position:"relative",
   },
   locSearchBoxInput:{
     padding:"1px"
@@ -125,5 +134,10 @@ export default makeStyles((theme) => ({
     display:"flex",
     justifyContent:"center",
     alignItems:"center"
+  },
+  myLocationButton:{
+    position:"absolute",
+    top:"20%",
+    right:"3%",
   }
 }));

@@ -41,7 +41,13 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection : 'row',
     justifyContent: 'space-between',
-    width:"200px"
+    '@media(min-width:600px)':{
+      width:"200px",
+    },
+    
+    '@media(max-width:600px)':{
+      width:"160px",
+    }
   },
   userName: {
     display: 'flex',
