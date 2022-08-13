@@ -56,11 +56,13 @@ export default function CommentSection( {post} ){
                         <TextField
                             className = {classes.commentText}
                             fullWidth
-                            rows={3}
+                            rows={1}
                             variant="outlined"
                             label="Write something...."
                             value={comment}
                             onChange= {(e) => setComment(e.target.value)}
+                            multiline
+                            maxRows ={3}
                         />
                         <Button 
                             fullWidth

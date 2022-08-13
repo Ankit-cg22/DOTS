@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid , CircularProgress} from '@material-ui/core'
+import {Grid , CircularProgress , Typography} from '@material-ui/core'
 import Post from './Post/Post'
 import LoadScreen from '../LoadScreen/LoadScreen';
 // here we need the data about the posts 
@@ -25,7 +25,10 @@ export default function Posts( {setCurrentId }) {
     }
 
     return (
-        !posts?.length ? <CircularProgress/>: (
+        !posts?.length ? 
+            <div style={{width:"100%" , display:"flex" , alignItems:"center" , justifyContent:"center"}}>
+                <Typography variant="h5">No posts available</Typography>
+            </div>: (
             <Grid className ={classes.mainContainer} containter alignItems="stretch" spacing={2}>
 
                 {posts.map( (post) => (

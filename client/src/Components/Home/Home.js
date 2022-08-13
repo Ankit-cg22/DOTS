@@ -28,8 +28,6 @@ export default function Home( {  currentId , setCurrentId }) {
    const [tagSearch , setTagSearch] = useState('');
    const [searchObject , setSearchObject] = useState(initialSearchObject);
 
-
-
    const dispatch = useDispatch()
 
    const handleTagInput=(e)=>{
@@ -41,14 +39,9 @@ export default function Home( {  currentId , setCurrentId }) {
         if(searchObject.tag!=='' || searchObject.search!=='')
         {
             dispatch(getPostsBySearch(searchObject))
-            history.push(`/posts/search?search=${searchObject.search!='' || 'none'}&tag=${searchObject.tag}`)
+            history.push(`/posts/search?search=${searchObject.search!=='' || 'none'}&tag=${searchObject.tag}`)
            
-
-        }else{
-            history.push('/')
-          
-        }
-        
+        }        
         
    }
 

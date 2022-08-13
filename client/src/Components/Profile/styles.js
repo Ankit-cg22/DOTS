@@ -32,14 +32,16 @@ export default makeStyles( (theme) => ({
         display: 'flex',
         flexDirection : 'column',
         alignItems: 'center',
-       
+        
     },
     postWrapper:{
         width :"80%",
- 
         display : "flex",
         justifyContent:"center",
         alignItems:"center",
+        '@media(max-width:600px)':{
+            width:"100%",
+          }
     },
     header:{
         margin:"auto",

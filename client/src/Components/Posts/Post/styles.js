@@ -11,7 +11,7 @@ export default makeStyles({
       paddingTop: '48%',
     },
     '@media (max-width:600px)': {
-      paddingTop: '56.25%',
+      paddingTop: '35%',
     },
     '@media (min-width:700px)': {
       paddingTop: '56.25%',
@@ -62,7 +62,7 @@ export default makeStyles({
   
     '@media (max-width:600px)': {
       height : "95vw",
-      // width:"80vw",
+      width:"90vw",
       position:"relative",
     },
   },
@@ -81,11 +81,14 @@ export default makeStyles({
       textAlign : "center",
     },
     '@media (min-width:700px)': {
-      width : "40%" ,
+      width : "fit-content" ,
+      maxWidth : "50%",
       display :"flex" ,
       justifyContent: "space-between",
       textAlign : "center",
     },
+    marginLeft :"4px",
+    
   },
   overlayWrapper : {
     '@media (min-width:700px)': {
@@ -125,7 +128,7 @@ export default makeStyles({
       padding: '10px 0px',
     },
     '@media (max-width:600px)':{
-      padding: '5px 5px',
+      padding: '5px 10px',
     }
   },
   cardActions: {
@@ -141,17 +144,20 @@ export default makeStyles({
       alignItems:"center",
       padding:"0px 5px"
       
-    }
+    },
+    
 
   },
   cardAction: {
     '@media (max-width:700px)' :{
-      display: 'block',
-      textAlign: 'initial',
+      display:"flex",
+      flexDirection:"column",
+      alignItems:"flex-start",
+      justifyContent:"flex-start",
       minHeight : "50%",
       maxHeight: "50%",
       width : "100%",
-    
+      paddingTop:"5px",
     },
     '@media (min-width:700px)': {
       display : "flex" ,
@@ -162,7 +168,7 @@ export default makeStyles({
       alignItems: "flex-start",
       justifyContent:"space-between",
     },
-    
+   
   },
   imageD: {
     height:'100px'
@@ -174,8 +180,9 @@ export default makeStyles({
     },
     '@media (max-width:600px)': {
       paddingLeft : "10px",
+      textAlign:"left",
       paddingTop:"0px",
-      maxHeight:"50%",
+      maxHeight:"40%",
     }
   },
   visitLink:{
@@ -198,21 +205,21 @@ export default makeStyles({
       paddingRight:"2px"
     },
     '@media(max-width:600px)':{
-      width:"30%",
-      position:"absolute",
-      top:"0",
-      right:"22%",
+      // width:"30%",
+      // position:"absolute",
+      // top:"2%",
+      // right:"5%",
     }
   },
   editButton:{
-    '@media(max-width:600px)':{
-      color : "white",
-    }
+    // '@media(max-width:600px)':{
+    //   color : "white",
+    // }
   },
   deleteButton:{
-    '@media(max-width:600px)':{
-      color : "white",
-    }
+    // '@media(max-width:600px)':{
+    //   color : "white",
+    // }
   },
   modalBox:{
     position: 'absolute' ,

@@ -16,6 +16,9 @@ export default makeStyles((theme) => ({
   },
   postWrapper:{
     
-    width :"80%"
+    width :"80%",
+    '@media(max-width:600px)':{
+      width:"100%",
+    }
   }
 }));  

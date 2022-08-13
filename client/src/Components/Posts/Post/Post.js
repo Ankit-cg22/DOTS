@@ -8,7 +8,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import moment from 'moment'
 import { useDispatch } from 'react-redux';
-import { deletePost , updateLikes } from '../../../actions/posts';
+import { deletePost , updateLikes ,getPostsBySearch} from '../../../actions/posts';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 export default function Post( {post , setCurrentId}) {
@@ -22,14 +22,20 @@ export default function Post( {post , setCurrentId}) {
     }
 
     const userId = (currentUser?.result?._id )
-    const hasLiked = post?.likes.find((like) => like === userId)
-    const [likes , setLikes] = useState(post?.likes)
+    const [ hasLiked , setHasLiked ] = useState(post?.likes.find((like) => like === userId))
+    const [likes , setLikes] = useState(post?.likes.length)
 
     const handleLikeClick = async () => {
-        dispatch(updateLikes(post._id))
+        
+        if(hasLiked){
+            setLikes(likes-1)
+        } 
+        else{
+            setLikes(likes+1)
+        }
+        setHasLiked(!hasLiked)
 
-        if(hasLiked) setLikes(post.likes.filter( (id) => id === userId ))
-        else setLikes([ ...post.likes , userId])
+        dispatch(updateLikes(post._id))
 
     }
 
@@ -38,7 +44,6 @@ export default function Post( {post , setCurrentId}) {
         dispatch(deletePost(post._id))
         setOpenModal(false)
     }
-    
     
     return (
         <Card className={classes.card}>
@@ -49,24 +54,32 @@ export default function Post( {post , setCurrentId}) {
                         <div></div>
                         <div className={classes.overlay}>   
                             <Typography variant="body3">{post.name}</Typography>
-                            <Typography variant="body3">{moment(post.createdAt).fromNow()}</Typography>
+                            <Typography style={{marginLeft:"15px"}} variant="body3">{moment(post.createdAt).fromNow()}</Typography>
                         </div>
                     </div>
 
-                    <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
+                    <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                        
+                        {post.title.split(' ').splice(0, 5).join(' ')}
+                        
+                        {post.title.split(' ').splice(0, 10).join(' ') !== post.title &&
+                            '...'
+                        }       
+                        
+                    </Typography>
                     
                     <CardContent className={classes.description}>
                         <Typography variant="body2" color="textSecondary" component="p">
                         {window.innerWidth > 400 ? 
                             post.message.split(' ').splice(0, 30).join(' ')
                         : 
-                            post.message.split(' ').splice(0, 8).join(' ')
+                            post.message.split(' ').splice(0, 15).join(' ')
                         }...
                         </Typography>
                     </CardContent>
                     <div className={classes.details}>
                         <Typography variant="body2" color="textSecondary" component="h2">
-                            {post.tags.map((tag) => `#${tag} `)}
+                                {post.tags.map((tag) => `#${tag} `)}
                         </Typography>
                     </div>
                 </ButtonBase>
@@ -74,9 +87,9 @@ export default function Post( {post , setCurrentId}) {
                 <CardActions className={classes.cardActions}>
                     <Button className={ classes.likebutton }  disabled = { !currentUser?.result } size="small" color="primary" onClick={handleLikeClick}>
                         {hasLiked ? 
-                            <><ThumbUpAltIcon fontSize="small" /> : {likes.length}</>
+                            <><ThumbUpAltIcon fontSize="small" /> : {likes}</>
                         :
-                            <><ThumbUpAltOutlined fontSize="small" /> : {likes.length} </>
+                            <><ThumbUpAltOutlined fontSize="small" /> : {likes} </>
                         }
                     </Button>
 

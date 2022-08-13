@@ -20,6 +20,7 @@ export default makeStyles((theme) => ({
     submitButton:{
         width:"20%",    
         marginLeft : "0.5rem",
+        maxHeight:"50px",
         [theme.breakpoints.down('sm')]: {
             fontSize : "0.7rem"
         }

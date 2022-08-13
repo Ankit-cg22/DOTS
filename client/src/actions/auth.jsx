@@ -1,26 +1,33 @@
 import * as api from '../api/index' 
-import {AUTH } from '../constants/actionTypes'
+import {AUTH , AUTH_LOADING_START , AUTH_LOADING_END ,AUTH_FAIL } from '../constants/actionTypes'
 
 export const signUp = ( authFormData , history ) => async(dispatch) => {
+    dispatch( {type : AUTH_LOADING_START })
     try {
         
+        dispatch( {type : AUTH_LOADING_START })
         // api call for backend
         const { data } = await api.signUp(authFormData);
         // { } this is called destructuring the data
         // it unpacks properties from objects, into distinct variables
 
         // dispatch for the store
-        dispatch({type : AUTH ,  data })        
+        dispatch({type : AUTH ,  data })    
+        
+        dispatch( {type : AUTH_LOADING_END })
 
         // redirect to the homepage
         history.push('/')
 
     } catch (error) {
-        console.log(error);
+        console.log(error.response.data.message);
+        dispatch({type : AUTH_FAIL , payload : error.response.data.message})
     }
+    dispatch( {type : AUTH_LOADING_END })
 }
 
 export const signIn = ( authFormData , history ) =>async(dispatch) =>  {
+    dispatch( {type : AUTH_LOADING_START })
     try {
         
         // api call for backend
@@ -32,8 +39,10 @@ export const signIn = ( authFormData , history ) =>async(dispatch) =>  {
         // redirect to the homepage
         history.push('/')
 
-    } catch (error) {
-        console.log(error);
+    } catch (error) {        
+        dispatch({type : AUTH_FAIL , payload : error.response.data.message})
+        
     }
+    dispatch( {type : AUTH_LOADING_END })
     
 }

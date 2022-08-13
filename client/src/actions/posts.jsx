@@ -38,11 +38,11 @@ export const getPosts = (page) => async (dispatch) => {
 export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     
     try {
-        dispatch( {type : LOADING_START })
+        dispatch( {type : LOADING_START })     
         
         const { data : {data} } = await api.fetchPostsBySearch(searchQuery);
         // we are targeting the data object of the response we will get back
-        console.log(data)
+        console.log(searchQuery)
         dispatch( { type : FETCH_BY_TAG , payload : {data : data} });
         
         dispatch( {type : LOADING_END })

@@ -61,7 +61,7 @@ const App= () => {
                     </Route>
 
                     <Route exact path='/posts/:id'>
-                        <PostDetails/>
+                        <PostDetails setCurrentId ={setCurrentId}/>
                     </Route>
                     
                     <Route exact path="/profile/:id" > 

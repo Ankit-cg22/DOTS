@@ -13,7 +13,8 @@ export default makeStyles((theme) => ({
     '@media (max-width:479px)': {
       padding: '10px 0px',
     },
-    width:"100%"
+    width:"100%",
+    
   },
   heading: {
     color: 'black',

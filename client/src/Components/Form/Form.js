@@ -30,7 +30,7 @@ export default function Form({ currentId, setCurrentId }) {
     }
     const [location, setLocation] = useState()
     const [postData, setPostData] = useState({
-        title: '', message: '', tags: '', selectedFile: '',
+        title: '', message: '', tags: [], selectedFile: '',
     });
 
     const currentUser = JSON.parse(localStorage.getItem('profile'))
@@ -60,6 +60,9 @@ export default function Form({ currentId, setCurrentId }) {
 
         if(!postData.title || postData.title==="")return ;
 
+        postData.title = postData.title.trim()
+        postData.tags=(postData.tags.map((t) => t.trim()))
+        
         if (currentId) {
             // if a currentId is present , it means we are updating a pre-existing post 
             // so dispatch updatePost , pass the currentId in it.
@@ -80,13 +83,12 @@ export default function Form({ currentId, setCurrentId }) {
 
     const clear = () => {
         setCurrentId(null)
-        setPostData({ title: '', message: '', tags: '', selectedFile: '' })
+        setPostData({ title: '', message: '', tags: [], selectedFile: '' })
         setSetOnce(false)
     }
 
     const handleSearchClick = () => {
         if (!location || location === "") return;
-        // const queryString = `https://api.positionstack.com/v1/forward?access_key=${positionStack_api_key}&query=${location}`
         const queryString = `https://api.opencagedata.com/geocode/v1/json?q=${location}&key=${process.env.REACT_APP_GEOCODING_API_KEY}`
         
         setIsSearching(true)
@@ -144,7 +146,7 @@ export default function Form({ currentId, setCurrentId }) {
                         value={postData.message}
                         onChange={(e) => setPostData({ ...postData, message: e.target.value })}
                         multiline
-                        rows={2}
+                        rows={4}
                         maxRows={4}
                     />
                     <TextField
