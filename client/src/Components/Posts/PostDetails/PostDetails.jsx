@@ -14,7 +14,7 @@ import CommentSection from './CommentSection/CommentSection'
 import { Link } from 'react-router-dom';
 import useStyles from './styles'
 import { deletePost , updateLikes ,getPostsBySearch} from '../../../actions/posts';
-
+import DeletePostModal from '../../Modal/DeletePostModal/DeletePostModal';
 
 export default function PostDetails({setCurrentId}) {
 
@@ -54,17 +54,26 @@ export default function PostDetails({setCurrentId}) {
         
         dispatch(deletePost(post._id))
         setOpenModal(false)
+        history.push("/")
     }
     console.log(post);
 
-    if(!post)return null;
-    
+     
     if(isLoading)
     {
-    return(
-        <LoadScreen/>
+        return(
+            <LoadScreen/>
         ) 
     }
+
+    if(!post){
+        return(
+            <div style={{width:"100%" , display:"flex" , alignItems:"center" , justifyContent:"center"}}>
+                <Typography variant="h5">Post does not exist</Typography>
+            </div>
+        )
+    }
+   
         
     return (
         <>
@@ -140,23 +149,7 @@ export default function PostDetails({setCurrentId}) {
                 </div>
             </div>
         </Paper>
-        <Modal
-            open={openModal}
-            onClose={()=>{}}
-            BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.5)" , opacity:"0.5" } }}
-        >
-            <Box className={classes.modalBox}>
-                <div className={classes.deleteModalContainer}>
-                    <Typography>
-                        Do you want to delete the post ?
-                    </Typography>
-                    <div className={classes.deleteActionButtons}>
-                            <Button className={classes.deleteNoButton} color="primary" variant="contained" onClick={()=>setOpenModal(false)}> No </Button>
-                            <Button className={classes.deleteYesButton} color="secondary" variant="contained" onClick={handleDeleteClick}> Yes</Button>
-                    </div>
-                </div>
-            </Box>
-        </Modal>
+        <DeletePostModal openModal={openModal} handleDeleteClick={handleDeleteClick} setOpenModal={setOpenModal} />
     </>
 
     )

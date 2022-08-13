@@ -63,7 +63,7 @@ export default function Auth() {
 
                     
                     {authFail && 
-                        <Typography variant="body2" color="error">{authFailMessage}</Typography>
+                        <Typography variant="body2" color="error" style={{textAlign:"center"}}>{authFailMessage}</Typography>
                     }
 
 
