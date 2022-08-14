@@ -11,10 +11,12 @@ import { useDispatch } from 'react-redux';
 import { deletePost, updateLikes, getPostsBySearch } from '../../../actions/posts';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import { useLocation } from 'react-router-dom'; 
 import DeletePostModal from '../../Modal/DeletePostModal/DeletePostModal';
 export default function Post({ post, setCurrentId }) {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const location = useLocation();
     const history = useHistory();
     const currentUser = JSON.parse(localStorage.getItem('profile'));
     const [openModal, setOpenModal] = useState(false)
@@ -41,9 +43,8 @@ export default function Post({ post, setCurrentId }) {
     }
 
     const handleDeleteClick = () => {
-
         dispatch(deletePost(post._id))
-        setOpenModal(false)
+        setOpenModal(false)        
     }
 
     return (

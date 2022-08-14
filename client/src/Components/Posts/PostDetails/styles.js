@@ -20,7 +20,11 @@ export default makeStyles((theme) => ({
         borderRadius: '20px',
         margin: '10px',
         flex: 1,
-        
+        width:"70%",
+        [theme.breakpoints.down('sm')]: {
+          marginLeft: 0,
+          width:"100%",
+        },
       },
       imageSection: {
         marginLeft: '20px',

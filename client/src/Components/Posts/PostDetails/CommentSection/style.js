@@ -25,5 +25,27 @@ export default makeStyles((theme) => ({
             fontSize : "0.7rem"
         }
     },
-    
+    commentTopdiv:{
+        width:"90%",
+        display:"flex",
+        justifyContent:"space-between",
+        alignItems:"center",    
+        marginButtom:"20px",
+    },
+    commentBody:{
+        width:"90%",
+        overflowWrap: 'break-word',
+        marginTop:"10px"
+    },
+    ProfileLink:{
+        textDecoration:"none",
+        color : "#55AAD1",
+        '&:hover':{
+          borderBottom:"1px solid #55AAD1"
+
+        },
+        '@media(max-width:600px)':{
+          fontSize: "1.0rem"
+        }
+    }
 }))

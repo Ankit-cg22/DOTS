@@ -119,14 +119,14 @@ export const updateLikes = (id) => async (dispatch) =>{
 }
 
 
-export const postComment = (commentString , id) => async(dispatch) => {
+export const postComment = (commentObject , id) => async(dispatch) => {
     try {
-        const {data} = await api.postComment(commentString,id)
+        const {data} = await api.postComment(commentObject,id)
         
         // data : contains the new updated post (with the new comment added)
         dispatch({ type : COMMENT , payload : data})
-
-        return data.comments;
+        
+        return data.comments.reverse();
         
     } catch (error) {
         console.log(error)

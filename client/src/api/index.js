@@ -25,7 +25,7 @@ export const updatePost = ( id , updatedPost) => API.patch(`/posts/${id}`, updat
 export const deletePost = (id) => API.delete(`/posts/${id}`)
 export const updateLikes = (id) => API.patch(`/posts/${id}/likePost`)
 
-export const postComment= (commentString , id ) => API.post(`/posts/${id}/postComment` , {commentString})
+export const postComment= (commentObject , id ) => API.post(`/posts/${id}/postComment` , {commentObject})
 
 //auth
 
