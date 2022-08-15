@@ -13,6 +13,7 @@ A camping blog app made using MERN tech stack. This platform helps wanderers sha
 - Search by tag
 - Comments
 - In built location picker with google maps and opencage api 
+- Seach locations and locate current location  
 
 <h2>Tech/Frameworks/Packages used </h2>
 
