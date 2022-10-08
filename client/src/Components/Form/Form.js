@@ -8,8 +8,7 @@ import { useDispatch } from 'react-redux'
 import { createPost, updatePost } from '../../actions/posts';
 import axios from 'axios'
 import { useSelector } from 'react-redux'; // to select particular items from the reduc store
-
-import { useHistory } from 'react-router-dom'
+import { useHistory , useLocation } from 'react-router-dom'
 
 import { useJsApiLoader, GoogleMap, Marker, Autocomplete } from '@react-google-maps/api'
 require('dotenv').config()
@@ -20,7 +19,7 @@ export default function Form({ currentId, setCurrentId }) {
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
     })
-
+    const locationRedux = useLocation()
     const classes = useStyles();
     const dispatch = useDispatch();
     const history = useHistory()
@@ -34,7 +33,7 @@ export default function Form({ currentId, setCurrentId }) {
     });
 
     const currentUser = JSON.parse(localStorage.getItem('profile'))
-    const positionStack_api_key = process.env.REACT_APP_POSITIONSTACK_API_KEY
+ 
     const postUpdate = useSelector((state) => (currentId ? state.posts.posts.find((message) => message._id === currentId) : null));
     const posts = useSelector((state) => state.posts)
     const [latitude, setLatitude] = useState(20.2961);
@@ -72,7 +71,7 @@ export default function Form({ currentId, setCurrentId }) {
             dispatch(createPost({ ...postData, name: currentUser?.result?.name }))
         }
         clear()
-        history.push("/") // to redirect to home 
+        history.push(`${locationRedux.state.prevPath}`) // to redirect to home 
 
     }
 

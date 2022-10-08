@@ -28,12 +28,12 @@ const App= () => {
     // here we dispatch the action , 
     // we handle this dispatch in the reducer funtion for corresponding stuff
 
-    const user= JSON.parse(localStorage.getItem("profile"))
-
+    const [ user , setUser ]= useState(JSON.parse(localStorage.getItem("profile")))
+   
     return (
         <BrowserRouter>
            
-                <Navbar/>
+                <Navbar setLoggedUser={setUser}/>
                 <Switch>
                     <Route exact path="/" component={() => <Redirect to='/posts'/>} />
 
@@ -51,7 +51,7 @@ const App= () => {
                         :
                             <Redirect to='/'/>
                         }
-
+ 
                         {/* if there is a logged in user and he is trying to access '/auth' we redirect him to the posts page */}
                         
                     </Route> 

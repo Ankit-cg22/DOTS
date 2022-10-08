@@ -9,7 +9,7 @@ export default makeStyles((theme) => ({
     commentsInner:{
         height : "200px",
         width:"100%",
-        overflowY: "auto",
+        overflowY: "scroll",
     },  
     commentInput:{
         width:"100%",
@@ -27,6 +27,9 @@ export default makeStyles((theme) => ({
     },
     commentTopdiv:{
         width:"90%",
+        '@media(max-width:600px)':{
+            width:"100%",
+        },
         display:"flex",
         justifyContent:"space-between",
         alignItems:"center",    

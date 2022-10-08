@@ -9,13 +9,13 @@ import  {  useHistory } from 'react-router-dom'
 
 import { signIn , signUp } from '../../actions/auth';
 import { useSelector } from 'react-redux';
-
+import {useLocation} from 'react-router-dom'
 // initial data for the auth form 
 
 const initialData = { firstName: '' , lastName: '' , email: '' , password: '' , confirmPassword: ''};
 
 export default function Auth() {
-    
+    const location = useLocation();
     const dispatch = useDispatch();
     const classes = useStyles();
     const [showPassword , setShowPassword] = useState(0)
@@ -29,9 +29,9 @@ export default function Auth() {
         // sign up
         if(isSignUp)
         {
-            dispatch( signUp( authFormData ,history ));
+            dispatch( signUp( authFormData ,history , location ));
         }else{
-            dispatch( signIn( authFormData ,history ));
+            dispatch( signIn( authFormData ,history , location));
 
         }
     }

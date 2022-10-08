@@ -15,11 +15,12 @@ import { Link } from 'react-router-dom';
 import useStyles from './styles'
 import { deletePost , updateLikes ,getPostsBySearch} from '../../../actions/posts';
 import DeletePostModal from '../../Modal/DeletePostModal/DeletePostModal';
+import { useLocation } from 'react-router-dom';
 
 export default function PostDetails({setCurrentId}) {
 
     const classes = useStyles()
-
+    const location = useLocation()
     const {post , posts , isLoading }  = useSelector((state) => state.posts)
     const [openModal , setOpenModal] = useState(false)
     const currentUser = JSON.parse(localStorage.getItem('profile'));
@@ -96,8 +97,8 @@ export default function PostDetails({setCurrentId}) {
                         <Typography style={{margin:"10px 0px"}} variant="body1" color="textSecondary" component="h3">
                             {post.tags.map((tag) => {
                                 return (
-                                    <span>
-                                        #{tag}
+                                    <span style={{marginRight:'4px'}}>
+                                        #{tag }
                                     </span>
                                 )
                             })}
@@ -119,7 +120,7 @@ export default function PostDetails({setCurrentId}) {
                                 {( currentUser?.result?._id === post?.author) &&( // visible only if current user is creator of the post
                                     <Grid className={classes.authorButtons }>
                         
-                                    <Button className={classes.editButton}  component={Link} to="/create" size="small" color="primary" onClick={() => setCurrentId(post._id)}>
+                                    <Button className={classes.editButton}  component={Link} to={{pathname : "/create" , state:{prevPath : location.pathname} }} size="small" color="primary" onClick={() => setCurrentId(post._id)}>
                                             <EditIcon  fontSize="default" />
                                     </Button>
                         

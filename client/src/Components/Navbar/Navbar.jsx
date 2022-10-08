@@ -8,7 +8,7 @@ import { LOGOUT } from '../../constants/actionTypes';
 import useStyles from './style'
 import dots from '../../images/dots.png'
 
-export default function Navbar() {
+export default function Navbar({setLoggedUser}) {
 
     const classes = useStyles();
 
@@ -21,8 +21,9 @@ export default function Navbar() {
 
     const logout = () => {
         dispatch({ type : LOGOUT })
-        history.push('/')
         setUser(null)
+        setLoggedUser(null)
+        history.push('/')
     }
 
     useEffect(() => {
@@ -70,7 +71,7 @@ export default function Navbar() {
                     :
                     <div className={classes.loginButton }>
                       
-                            <Button component={Link} to="/auth"  color ="primary" variant="contained">
+                            <Button component={Link} to={{pathname : "/auth" , state:{prevPath:location.pathname}}} color ="primary" variant="contained">
                                 Log In
                             </Button>
                        

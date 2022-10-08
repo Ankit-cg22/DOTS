@@ -22,7 +22,7 @@ export default function Home( {  currentId , setCurrentId }) {
    const query = useQuery() // page info
    const page = query.get('page') || 1; // searches for 'page' parameter in the url
    // if 'page' not present , set it to 1(first page)
-
+    const location = useLocation()
    const searchQuery = query.get('searchQuery')
 
    const [tagSearch , setTagSearch] = useState('');
@@ -69,7 +69,7 @@ export default function Home( {  currentId , setCurrentId }) {
             <Grid item md={2} xs={12} sm={6} className={classes.widgetContainer}>
                 
                     {user?.result?.name?
-                        <Button className = {classes.addButton} component={Link} to="/create"  color ="secondary" variant="contained">
+                        <Button className = {classes.addButton} component={Link} to={{pathname : "/create" , state:{prevPath : location.pathname} }}  color ="secondary" variant="contained">
                             <AddBoxIcon/>
                         </Button>
                     :

@@ -1,7 +1,8 @@
 import * as api from '../api/index' 
 import {AUTH , AUTH_LOADING_START , AUTH_LOADING_END ,AUTH_FAIL } from '../constants/actionTypes'
 
-export const signUp = ( authFormData , history ) => async(dispatch) => {
+
+export const signUp = ( authFormData , history, location ) => async(dispatch ) => {
     dispatch( {type : AUTH_LOADING_START })
     try {
         
@@ -17,7 +18,7 @@ export const signUp = ( authFormData , history ) => async(dispatch) => {
         dispatch( {type : AUTH_LOADING_END })
 
         // redirect to the homepage
-        history.push('/')
+        history.push(`${location.state.prevPath}`)
 
     } catch (error) {
         console.log(error.response.data.message);
@@ -26,7 +27,7 @@ export const signUp = ( authFormData , history ) => async(dispatch) => {
     dispatch( {type : AUTH_LOADING_END })
 }
 
-export const signIn = ( authFormData , history ) =>async(dispatch) =>  {
+export const signIn = ( authFormData , history , location ) =>async(dispatch) =>  {
     dispatch( {type : AUTH_LOADING_START })
     try {
         
@@ -37,10 +38,11 @@ export const signIn = ( authFormData , history ) =>async(dispatch) =>  {
         dispatch({type : AUTH ,  data })   
         
         // redirect to the homepage
-        history.push('/')
+        history.push(`${location.state.prevPath}`)
+
 
     } catch (error) {        
-        dispatch({type : AUTH_FAIL , payload : error.response.data.message})
+        dispatch({type : AUTH_FAIL , payload : error.response?.data.message})
         
     }
     dispatch( {type : AUTH_LOADING_END })

@@ -44,7 +44,8 @@ export default function Post({ post, setCurrentId }) {
 
     const handleDeleteClick = () => {
         dispatch(deletePost(post._id))
-        setOpenModal(false)        
+        setOpenModal(false)   
+        if(location.pathname != '/posts')window.location.reload()     
     }
 
     return (
@@ -64,7 +65,7 @@ export default function Post({ post, setCurrentId }) {
 
                         {post.title.split(' ').splice(0, 4).join(' ')}
 
-                        {post.title.split(' ').splice(0, 10).join(' ') !== post.title &&
+                        {post.title.split(' ').splice(0, 4).join(' ') !== post.title &&
                             '...'
                         }
 
@@ -100,7 +101,7 @@ export default function Post({ post, setCurrentId }) {
                     {(currentUser?.result?._id === post?.author) && ( // visible only if current user is creator of the post
                         <Grid className={classes.authorButtons}>
 
-                            <Button component={Link} to="/create" size="small" color="primary" onClick={() => setCurrentId(post._id)}>
+                            <Button component={Link} to={{pathname : "/create" , state:{prevPath : location.pathname} }} size="small" color="primary" onClick={() => setCurrentId(post._id)}>
                                 <EditIcon className={classes.editButton} fontSize="default" />
                             </Button>
 
