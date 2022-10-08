@@ -1,5 +1,5 @@
 <h1>DOTS</h1>
-A blog app made using MERN tech stack.
+A camping blog app made using MERN tech stack. This platform helps wanderers share and know about camping sites . One can share about their camping location and upload its location along with the blog. Others can locate that site with one click .
 
 <h2> Features </h2>
 
@@ -12,6 +12,8 @@ A blog app made using MERN tech stack.
 - Pagination
 - Search by tag
 - Comments
+- In built location picker with google maps and opencage api 
+- Seach locations and locate current location  
 
 <h2>Tech/Frameworks/Packages used </h2>
 
