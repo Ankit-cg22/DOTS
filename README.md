@@ -14,6 +14,7 @@ A camping blog app made using MERN tech stack. This platform helps wanderers sha
 - Comments
 - In built location picker with google maps and opencage api 
 - Seach locations and locate current location  
+- Backend caching using redis 
 
 <h2>Tech/Frameworks/Packages used </h2>
 
@@ -35,6 +36,7 @@ A camping blog app made using MERN tech stack. This platform helps wanderers sha
 - MongoDB : Used as database.
 - jsonwebtoken : For JWT authentication
 - cors : cross origin resource sharing
+- redis : for caching recent database fetches 
 
 <h2> Work flow of operations </h2>
 
